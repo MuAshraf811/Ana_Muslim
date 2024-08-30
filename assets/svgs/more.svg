@@ -1,0 +1,17 @@
+<svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_b_4_735)">
+<rect y="0.952393" width="48" height="48" rx="8" fill="#FFF4EE"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M9 15.7857C9 11.4104 9.04685 9.95239 14.8333 9.95239C20.6198 9.95239 20.6667 11.4104 20.6667 15.7857C20.6667 20.1611 20.6851 21.6191 14.8333 21.6191C8.98155 21.6191 9 20.1611 9 15.7857Z" stroke="#FFAC84" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M27.3333 15.7857C27.3333 11.4104 27.3802 9.95239 33.1667 9.95239C38.9532 9.95239 39 11.4104 39 15.7857C39 20.1611 39.0185 21.6191 33.1667 21.6191C27.3149 21.6191 27.3333 20.1611 27.3333 15.7857Z" fill="#42A8C3" stroke="#42A8C3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M9 34.1191C9 29.7437 9.04685 28.2857 14.8333 28.2857C20.6198 28.2857 20.6667 29.7437 20.6667 34.1191C20.6667 38.4944 20.6851 39.9524 14.8333 39.9524C8.98155 39.9524 9 38.4944 9 34.1191Z" fill="#42A8C3" stroke="#42A8C3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M27.3333 34.1191C27.3333 29.7437 27.3802 28.2857 33.1667 28.2857C38.9532 28.2857 39 29.7437 39 34.1191C39 38.4944 39.0185 39.9524 33.1667 39.9524C27.3149 39.9524 27.3333 38.4944 27.3333 34.1191Z" stroke="#FFAC84" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<filter id="filter0_b_4_735" x="-4" y="-3.04761" width="56" height="56" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImageFix" stdDeviation="2"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_4_735"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_4_735" result="shape"/>
+</filter>
+</defs>
+</svg>
