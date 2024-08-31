@@ -36,6 +36,8 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.0.10+1
   location: ^7.0.0
+  meta: ^1.12.0
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_lints: ^3.0.0
@@ -55,6 +57,7 @@ flutter:
   assets:
     - assets/images/
     - assets/svgs/
+    - assets/jsons/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
