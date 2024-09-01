@@ -1,6 +1,8 @@
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
 import 'package:ana_muslim/features/home/presentation/cubit/home_cubit_cubit.dart';
+import 'package:ana_muslim/features/home/presentation/views/quran_view.dart';
+import 'package:ana_muslim/features/qiblah/presentation/qiblah_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,7 +42,13 @@ class SurahsView extends StatelessWidget {
                         color: AppColors.primaryBlueDarker,
                       ),
                       itemBuilder: (context, index) => InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const QuranView(),
+                              ));
+                        },
                         borderRadius: BorderRadius.circular(8.r),
                         highlightColor: AppColors.white,
                         hoverColor:
@@ -50,7 +58,9 @@ class SurahsView extends StatelessWidget {
                     ),
                   );
                 }
-                return const AllSurahsShimmer();
+                return const Expanded(
+                  child: AllSurahsShimmer(),
+                );
               },
             ),
           ],
@@ -131,7 +141,7 @@ class SurahTypeContainer extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 4.w),
       height: 28.h,
-      width: 36.w,
+      width: 42.w,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.primary),
