@@ -1,4 +1,5 @@
 import 'package:ana_muslim/core/constants/app_colors.dart';
+import 'package:ana_muslim/core/constants/app_route_path.dart';
 import 'package:ana_muslim/core/constants/sections_constanst.dart';
 import 'package:ana_muslim/core/styles/text_styles.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
@@ -21,24 +22,48 @@ class SectionsContainer extends StatelessWidget {
         border: Border.all(color: AppColors.white, width: 1.5.w),
         borderRadius: BorderRadius.circular(12.r),
       ),
-      child: const IntrinsicHeight(
+      child: IntrinsicHeight(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                CustomGridTile(index: 0),
-                CustomGridTile(index: 1),
-                CustomGridTile(index: 2),
+                CustomGridTile(
+                  index: 0,
+                  onTap: () =>
+                      Navigator.pushNamed(context, RoutesConstants.surahsView),
+                ),
+                CustomGridTile(
+                  index: 1,
+                  onTap: () =>
+                      Navigator.pushNamed(context, RoutesConstants.surahsView),
+                ),
+                CustomGridTile(
+                  index: 2,
+                  onTap: () =>
+                      Navigator.pushNamed(context, RoutesConstants.surahsView),
+                ),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                CustomGridTile(index: 3),
-                CustomGridTile(index: 4),
-                CustomGridTile(index: 5),
+                CustomGridTile(
+                  index: 3,
+                  onTap: () =>
+                      Navigator.pushNamed(context, RoutesConstants.azkarView),
+                ),
+                CustomGridTile(
+                  index: 4,
+                  onTap: () =>
+                      Navigator.pushNamed(context, RoutesConstants.azkarView),
+                ),
+                CustomGridTile(
+                  index: 5,
+                  onTap: () =>
+                      Navigator.pushNamed(context, RoutesConstants.azkarView),
+                ),
               ],
             ),
           ],
@@ -49,13 +74,15 @@ class SectionsContainer extends StatelessWidget {
 }
 
 class CustomGridTile extends StatelessWidget {
-  const CustomGridTile({super.key, required this.index});
+  const CustomGridTile({super.key, required this.index, required this.onTap});
   final int index;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         InkWell(
+          onTap: onTap,
           child: Container(
             width: 60.w,
             decoration: BoxDecoration(

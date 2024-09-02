@@ -1,6 +1,6 @@
 import 'package:ana_muslim/core/cubit/nav_b_ar_cubit.dart';
+import 'package:ana_muslim/core/router/app_router.dart';
 import 'package:ana_muslim/features/home/presentation/cubit/home_cubit_cubit.dart';
-import 'package:ana_muslim/features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,7 +28,7 @@ class AnaMuslim extends StatelessWidget {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(),
-          home: const HomeView(),
+          onGenerateRoute: AppRouter.generateRoute,
         ),
       ),
     );
