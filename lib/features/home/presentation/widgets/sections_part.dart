@@ -3,7 +3,9 @@ import 'package:ana_muslim/core/constants/app_route_path.dart';
 import 'package:ana_muslim/core/constants/sections_constanst.dart';
 import 'package:ana_muslim/core/styles/text_styles.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
+import 'package:ana_muslim/features/home/presentation/cubit/home_cubit_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SectionsContainer extends StatelessWidget {
@@ -31,8 +33,10 @@ class SectionsContainer extends StatelessWidget {
               children: [
                 CustomGridTile(
                   index: 0,
-                  onTap: () =>
-                      Navigator.pushNamed(context, RoutesConstants.surahsView),
+                  onTap: () {
+                    context.read<HomeCubitCubit>().fetchSurahs();
+                    Navigator.pushNamed(context, RoutesConstants.surahsView);
+                  },
                 ),
                 CustomGridTile(
                   index: 1,
@@ -41,8 +45,10 @@ class SectionsContainer extends StatelessWidget {
                 ),
                 CustomGridTile(
                   index: 2,
-                  onTap: () =>
-                      Navigator.pushNamed(context, RoutesConstants.surahsView),
+                  onTap: () {
+                    context.read<HomeCubitCubit>().getPreyTime();
+                    Navigator.pushNamed(context, RoutesConstants.preyTimesView);
+                  },
                 ),
               ],
             ),
@@ -51,8 +57,10 @@ class SectionsContainer extends StatelessWidget {
               children: [
                 CustomGridTile(
                   index: 3,
-                  onTap: () =>
-                      Navigator.pushNamed(context, RoutesConstants.azkarView),
+                  onTap: () {
+                    context.read<HomeCubitCubit>().initAzkarjson();
+                    Navigator.pushNamed(context, RoutesConstants.azkarView);
+                  },
                 ),
                 CustomGridTile(
                   index: 4,
@@ -61,8 +69,7 @@ class SectionsContainer extends StatelessWidget {
                 ),
                 CustomGridTile(
                   index: 5,
-                  onTap: () =>
-                      Navigator.pushNamed(context, RoutesConstants.azkarView),
+                  onTap: () {},
                 ),
               ],
             ),

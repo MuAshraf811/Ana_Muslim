@@ -30,3 +30,13 @@ final class InitializingAzkarErrorState extends HomeCubitState {
 final class DetailedAzkarState extends HomeCubitState {}
 
 final class DetailedAzkarSuccessState extends HomeCubitState {}
+
+final class FetchingPreyTimeState extends HomeCubitState {}
+
+final class FetchingPreyTimeSuccessState extends HomeCubitState {}
+
+final class FetchingPreyTimeErrorState extends HomeCubitState {
+  final String error;
+
+  FetchingPreyTimeErrorState({required this.error});
+}

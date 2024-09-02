@@ -1,5 +1,6 @@
 import 'package:ana_muslim/features/home/presentation/views/azkar_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/home_view.dart';
+import 'package:ana_muslim/features/home/presentation/views/prey_time_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/surahs_view.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,10 @@ class AppRouter {
       case RoutesConstants.azkarView:
         return MaterialPageRoute(
           builder: (context) => const AzkarView(),
+        );
+      case RoutesConstants.preyTimesView:
+        return MaterialPageRoute(
+          builder: (context) => const PreyTimeView(),
         );
 
       default:

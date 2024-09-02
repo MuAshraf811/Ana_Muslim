@@ -117,3 +117,11 @@ int goToSpacificSurahDependOnItsOrder(int index) {
     int() => 2,
   };
 }
+
+String getCurrentDate() {
+  final date = DateTime.now();
+  final String day = date.day.toString().padLeft(2, '0');
+  final String month = date.month.toString().padLeft(2, '0');
+  final String year = date.year.toString();
+  return "$day-$month-$year";
+}

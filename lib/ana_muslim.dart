@@ -20,9 +20,7 @@ class AnaMuslim extends StatelessWidget {
             create: (context) => NavBArCubit(),
           ),
           BlocProvider<HomeCubitCubit>(
-            create: (context) => HomeCubitCubit()
-              ..fetchSurahs()
-              ..initAzkarjson(),
+            create: (context) => HomeCubitCubit(),
           ),
         ],
         child: MaterialApp(
