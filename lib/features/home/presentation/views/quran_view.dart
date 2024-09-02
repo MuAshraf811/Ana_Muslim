@@ -3,8 +3,28 @@ import 'package:ana_muslim/core/widgets/spacers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class QuranView extends StatelessWidget {
-  const QuranView({super.key});
+import '../widgets/quran_view_appbar.dart';
+
+class QuranView extends StatefulWidget {
+  const QuranView({super.key, required this.page});
+  final int page;
+  @override
+  State<QuranView> createState() => _QuranViewState();
+}
+
+class _QuranViewState extends State<QuranView> {
+  late PageController controller;
+  @override
+  void initState() {
+    controller = PageController(initialPage: widget.page);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,60 +35,12 @@ class QuranView extends StatelessWidget {
           const QuranAppBar(),
           const VerticalSpacer(height: 18),
           Expanded(
-            child: ListView.separated(
-              itemCount: 301,
-              separatorBuilder: (context, index) => Divider(
-                endIndent: 4.w,
-                indent: 4.w,
-                height: 24.h,
-                color: AppColors.black,
-              ),
+            child: PageView.builder(
+              itemCount: 604,
+              controller: controller,
+              scrollDirection: Axis.vertical,
               itemBuilder: (context, index) =>
                   QuranOnePageItem(pageIndex: index),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class QuranAppBar extends StatelessWidget {
-  const QuranAppBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 18.w),
-      child: Row(
-        children: [
-          InkWell(
-            onTap: () => Navigator.pop(context),
-            child: Container(
-              height: 32.h,
-              padding: EdgeInsets.only(left: 6.w),
-              width: 32.w,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4.r),
-                border: Border.all(color: AppColors.offRed),
-              ),
-              child: Icon(
-                Icons.arrow_back_ios,
-                size: 16.w,
-              ),
-            ),
-          ),
-          const HorizontalSpacer(width: 32),
-          Container(
-            height: 32.h,
-            width: 220.w,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4.r),
-              border: Border.all(color: AppColors.offRed),
-            ),
-            child: const Text(
-              'وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِنْ مُدَّكِرٍ',
             ),
           ),
         ],
@@ -82,10 +54,22 @@ class QuranOnePageItem extends StatelessWidget {
   final int pageIndex;
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: [
-        Image.asset("assets/images/Quran/00${pageIndex + 1}.png"),
-        Image.asset("assets/images/Quran/000${pageIndex + 1}.png"),
+        Stack(
+          children: [
+            Image.asset("assets/images/Quran/00${pageIndex + 1}.png"),
+            Image.asset("assets/images/Quran/000${pageIndex + 1}.png"),
+          ],
+        ),
+        const VerticalSpacer(height: 12),
+        Divider(
+          endIndent: 16.w,
+          thickness: 1.h,
+          color: AppColors.black,
+          indent: 16.w,
+          height: 12.h,
+        ),
       ],
     );
   }

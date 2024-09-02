@@ -11,67 +11,61 @@ class DatePart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform.translate(
-      offset: Offset(0, -70.h),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12.w),
-        child: Row(
-          children: [
-            Container(
-              width: 140.w,
-              padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
-              decoration: BoxDecoration(
-                color: AppColors.primaryBlueDarker,
-                borderRadius: BorderRadius.circular(10.r),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+    return Row(
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
+          decoration: BoxDecoration(
+            color: AppColors.primaryBlueDarker,
+            borderRadius: BorderRadius.circular(10.r),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Date',
-                        style: getBoldStyle(
-                          fontSize: 18,
-                          color: AppColors.white,
-                          isItalic: true,
-                        ),
-                      ),
-                      Text(
-                        'Friday',
-                        style: getBoldStyle(
-                          fontSize: 18,
-                          color: AppColors.white,
-                          isItalic: true,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const VerticalSpacer(height: 10),
                   Text(
-                    '1-9-2024',
+                    'Date',
                     style: getBoldStyle(
-                      fontSize: 14,
+                      fontSize: 18,
                       color: AppColors.white,
                       isItalic: true,
                     ),
                   ),
-                  const VerticalSpacer(height: 10),
+                  const HorizontalSpacer(width: 32),
                   Text(
-                    '6-3-1448',
+                    'Friday',
                     style: getBoldStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       color: AppColors.white,
                       isItalic: true,
                     ),
                   ),
                 ],
               ),
-            ),
-          ],
+              const VerticalSpacer(height: 10),
+              Text(
+                '1-9-2024',
+                style: getBoldStyle(
+                  fontSize: 14,
+                  color: AppColors.white,
+                  isItalic: true,
+                ),
+              ),
+              const VerticalSpacer(height: 10),
+              Text(
+                '6-3-1448',
+                style: getBoldStyle(
+                  fontSize: 16,
+                  color: AppColors.white,
+                  isItalic: true,
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

@@ -11,36 +11,30 @@ class IslamicInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform.translate(
-      offset: Offset(0, -70.h),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12.w),
-        child: Row(
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 14.w),
-              decoration: BoxDecoration(
-                color: AppColors.offRed.withOpacity(0.9),
-                borderRadius: BorderRadius.circular(10.r),
+    return Row(
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 6.w),
+          decoration: BoxDecoration(
+            color: AppColors.offRed.withOpacity(0.9),
+            borderRadius: BorderRadius.circular(10.r),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'Islamic Information',
+                style: getBoldStyle(
+                  fontSize: 16,
+                  color: AppColors.white,
+                  isItalic: true,
+                ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Islamic Information',
-                    style: getBoldStyle(
-                      fontSize: 18,
-                      color: AppColors.white,
-                      isItalic: true,
-                    ),
-                  ),
-                  const VerticalSpacer(height: 10),
-                ],
-              ),
-            ),
-          ],
+              const VerticalSpacer(height: 10),
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

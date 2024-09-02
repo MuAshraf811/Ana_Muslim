@@ -12,9 +12,10 @@ class PrayerTimesContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 315.w,
+      //width: 315.w,
       //height: 146.h,
-      padding: EdgeInsets.only(right: 8.w, left: 18.w, top: 8.h),
+      padding: EdgeInsets.only(right: 32.w, left: 18.w, top: 8.h),
+      margin: EdgeInsets.only(bottom: 16.h),
       decoration: BoxDecoration(
         color: AppColors.offRed.withOpacity(0.75),
         borderRadius: BorderRadius.circular(12.r),
@@ -100,7 +101,7 @@ class PrayerTimesContainer extends StatelessWidget {
             ],
           ),
           Transform.translate(
-            offset: Offset(4.w, 3.h),
+            offset: Offset(24.w, 3.h),
             child: SizedBox(
               height: 120.h,
               child: Image.asset(

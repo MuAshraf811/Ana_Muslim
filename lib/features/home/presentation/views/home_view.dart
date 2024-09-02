@@ -17,13 +17,13 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: const CustomNavBAr(),
-      body: ListView(
+      body: Column(
         children: [
           Stack(
             children: [
               Stack(
                 children: [
-                  SizedBox(height: 576.h, width: double.infinity),
+                  SizedBox(height: 495.h, width: double.infinity),
                   Container(
                     width: double.infinity,
                     height: 360.h,
@@ -59,6 +59,7 @@ class HomeView extends StatelessWidget {
                   ),
                 ],
               ),
+              const VerticalSpacer(height: 12),
               Positioned(
                 top: 290.h,
                 child: const SectionsContainer(),
@@ -66,10 +67,10 @@ class HomeView extends StatelessWidget {
             ],
           ),
           const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               DatePart(),
-              HorizontalSpacer(width: 8),
+              //  HorizontalSpacer(width: 8),
               IslamicInformation(),
             ],
           ),

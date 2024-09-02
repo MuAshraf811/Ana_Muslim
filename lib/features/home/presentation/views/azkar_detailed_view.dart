@@ -1,10 +1,11 @@
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
 import 'package:ana_muslim/features/home/presentation/cubit/home_cubit_cubit.dart';
-import 'package:ana_muslim/features/home/presentation/views/surahs_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../widgets/custom_app_bar.dart';
 
 class AzkarDetailedView extends StatelessWidget {
   const AzkarDetailedView({super.key});
