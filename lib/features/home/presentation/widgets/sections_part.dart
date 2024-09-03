@@ -3,7 +3,7 @@ import 'package:ana_muslim/core/constants/app_route_path.dart';
 import 'package:ana_muslim/core/constants/sections_constanst.dart';
 import 'package:ana_muslim/core/styles/text_styles.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
-import 'package:ana_muslim/features/home/presentation/cubit/home_cubit_cubit.dart';
+import 'package:ana_muslim/features/home/presentation/controllers/cubit/home_cubit_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -69,7 +69,8 @@ class SectionsContainer extends StatelessWidget {
                 ),
                 CustomGridTile(
                   index: 5,
-                  onTap: () {},
+                  onTap: () =>
+                      Navigator.pushNamed(context, RoutesConstants.sebhaView),
                 ),
               ],
             ),

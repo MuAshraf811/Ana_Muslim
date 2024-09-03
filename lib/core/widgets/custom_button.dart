@@ -56,7 +56,7 @@ class CustomButton extends StatelessWidget {
             sufix ??
                 Text(
                   text,
-                  style: getRegularStyle(
+                  style: TextStyle(
                     fontSize: fontSize ?? 16,
                     color: textColor ?? AppColors.white,
                   ),

@@ -1,6 +1,6 @@
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
-import 'package:ana_muslim/features/home/presentation/cubit/home_cubit_cubit.dart';
+import 'package:ana_muslim/features/home/presentation/controllers/cubit/home_cubit_cubit.dart';
 import 'package:ana_muslim/features/home/presentation/views/quran_view.dart';
 import 'package:ana_muslim/features/home/presentation/widgets/all_surahs_shimmer.dart';
 import 'package:ana_muslim/features/home/presentation/widgets/surah_item.dart';

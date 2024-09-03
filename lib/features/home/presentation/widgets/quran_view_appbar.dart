@@ -5,8 +5,8 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/spacers.dart';
 
 class QuranAppBar extends StatelessWidget {
-  const QuranAppBar({super.key});
-
+  const QuranAppBar({super.key, this.text});
+  final String? text;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -38,8 +38,9 @@ class QuranAppBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(4.r),
               border: Border.all(color: AppColors.offRed),
             ),
-            child: const Text(
-              'وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِنْ مُدَّكِرٍ',
+            child: Text(
+              text ??
+                  'وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِنْ مُدَّكِرٍ',
             ),
           ),
         ],

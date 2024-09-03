@@ -15,7 +15,7 @@ class PrayTimesCall {
       queryParameters: {"latitude": latitude, "longitude": longitude},
     );
     if (res.statusCode == 200) {
-      return res.data;
+      return res.data["data"];
     }
     throw Exception('Something went wrong while fetching pray times');
   }

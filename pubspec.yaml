@@ -37,6 +37,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   location: ^7.0.0
   meta: ^1.12.0
+  provider: ^6.1.2
   shimmer: ^3.0.0
 
 dev_dependencies:
@@ -57,7 +58,7 @@ flutter:
   assets:
     - assets/images/
     - assets/svgs/
-    - assets/jsons/ 
+    - assets/jsons/
     - assets/images/Quran/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

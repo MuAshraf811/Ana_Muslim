@@ -2,15 +2,15 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:ana_muslim/core/utils/functions.dart';
-import 'package:ana_muslim/core/utils/location_handler.dart';
 import 'package:ana_muslim/features/home/models/azkar_model.dart';
+import 'package:ana_muslim/features/home/models/prey_time_model.dart';
 import 'package:ana_muslim/features/home/models/surah_model.dart';
 import 'package:ana_muslim/features/qiblah/data/surah_list.dart';
 import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/pray_time.dart';
+import '../../../data/pray_time.dart';
 
 part 'home_cubit_state.dart';
 
@@ -18,18 +18,20 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
   late List<SurahModel> allSurahs;
   late List<AzkarModel> azkrMOdel;
   List<InnerAzkar>? someZekr;
+  late PreyTimesModel preyTimes;
   HomeCubitCubit() : super(HomeCubitInitial());
 
   void getPreyTime() async {
     try {
       emit(FetchingPreyTimeState());
-      final myLocation = await LocationHandler.getuserCurrentLocation();
+      // final myLocation = await LocationHandler.getuserCurrentLocation();
       final currentDate = getCurrentDate();
-      await PrayTimesCall.getPreyTimesByDateAndLocation(
+      final result = await PrayTimesCall.getPreyTimesByDateAndLocation(
         date: currentDate,
-        latitude: myLocation.latitude,
-        longitude: myLocation.longitude,
+        latitude: 30.434822,
+        longitude: 31.48655,
       );
+      preyTimes = PreyTimesModel.fromjson(result);
       emit(FetchingPreyTimeSuccessState());
     } catch (e) {
       emit(FetchingPreyTimeErrorState(error: e.toString()));
