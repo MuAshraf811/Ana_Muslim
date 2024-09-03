@@ -29,10 +29,11 @@ class QuranAppBar extends StatelessWidget {
               ),
             ),
           ),
-          const HorizontalSpacer(width: 32),
+          const HorizontalSpacer(width: 8),
           Container(
             height: 32.h,
-            width: 220.w,
+            //  width: 220.w,
+            padding: EdgeInsets.symmetric(horizontal: 6.w),
             alignment: Alignment.center,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4.r),

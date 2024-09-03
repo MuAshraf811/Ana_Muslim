@@ -2,6 +2,7 @@ import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
 import 'package:ana_muslim/features/home/presentation/controllers/cubit/home_cubit_cubit.dart';
 import 'package:ana_muslim/features/home/presentation/widgets/custom_app_bar.dart';
+import 'package:ana_muslim/features/home/presentation/widgets/quran_view_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +20,10 @@ class PreyTimeView extends StatelessWidget {
           child: Column(
             children: [
               const VerticalSpacer(height: 18),
-              const CustomAppBar(),
+              const QuranAppBar(
+                text:
+                    "إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا",
+              ),
               const VerticalSpacer(height: 22),
               BlocBuilder<HomeCubitCubit, HomeCubitState>(
                 buildWhen: (previous, current) =>
