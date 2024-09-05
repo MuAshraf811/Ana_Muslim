@@ -50,3 +50,13 @@ final class FetchingHadithBooksErrorState extends HomeCubitState {
 
   FetchingHadithBooksErrorState({required this.error});
 }
+
+final class LoadingHadithState extends HomeCubitState {}
+
+final class HadithSuccessState extends HomeCubitState {}
+
+final class HadithErrorState extends HomeCubitState {
+  final String error;
+
+  HadithErrorState({required this.error});
+}

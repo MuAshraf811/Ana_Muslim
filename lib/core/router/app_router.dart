@@ -1,5 +1,6 @@
 import 'package:ana_muslim/features/home/presentation/controllers/provider/sebha_provider.dart';
 import 'package:ana_muslim/features/home/presentation/views/azkar_view.dart';
+import 'package:ana_muslim/features/home/presentation/views/detailed_hadith_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/hadith_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/home_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/prey_time_view.dart';
@@ -40,6 +41,11 @@ class AppRouter {
       case RoutesConstants.hadithView:
         return MaterialPageRoute(
           builder: (context) => const HadithView(),
+        );
+      case RoutesConstants.detailedHadithView:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => const DetailedHadithView(),
         );
 
       default:

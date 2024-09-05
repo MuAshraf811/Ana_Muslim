@@ -21,8 +21,28 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
   late List<AzkarModel> azkrMOdel;
   List<InnerAzkar>? someZekr;
   late PreyTimesModel preyTimes;
+  late List<HadithModel> hadith;
   late List<HadithBooksModel> hadithBooks;
+  int from = 1;
+  int to = 10;
   HomeCubitCubit() : super(HomeCubitInitial());
+
+  void getHadiths(String book) async {
+    try {
+      emit(LoadingHadithState());
+      final res = await HadithBooksFetcher.fetchHadithBook(
+          book: book, from: from, to: to);
+      hadith = res
+          .map(
+            (e) => HadithModel.fromJson(e),
+          )
+          .toList();
+
+      emit(HadithSuccessState());
+    } catch (e) {
+      emit(HadithErrorState(error: e.toString()));
+    }
+  }
 
   void getAllHAdithBooks() async {
     try {

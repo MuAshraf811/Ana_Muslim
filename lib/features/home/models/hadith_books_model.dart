@@ -17,3 +17,14 @@ class HadithBooksModel {
     );
   }
 }
+
+class HadithModel {
+  final int number;
+  final String arab;
+
+  HadithModel({required this.number, required this.arab});
+
+  factory HadithModel.fromJson(Map<String, dynamic> res) {
+    return HadithModel(number: res["number"], arab: res["arab"]);
+  }
+}
