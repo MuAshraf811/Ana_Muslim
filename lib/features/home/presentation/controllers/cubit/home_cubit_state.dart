@@ -40,3 +40,13 @@ final class FetchingPreyTimeErrorState extends HomeCubitState {
 
   FetchingPreyTimeErrorState({required this.error});
 }
+
+final class FetchingHadithBooksState extends HomeCubitState {}
+
+final class FetchingHadithBooksSuccessState extends HomeCubitState {}
+
+final class FetchingHadithBooksErrorState extends HomeCubitState {
+  final String error;
+
+  FetchingHadithBooksErrorState({required this.error});
+}

@@ -179,3 +179,28 @@ String getMonthByItsOrder(int month) {
       return "حدث خطأ ما ";
   }
 }
+
+String translateHadithName(String name) {
+  switch (name) {
+    case "abu-daud":
+      return 'سنن أبي داود';
+    case "ahmad":
+      return 'سنن أحمد';
+    case "bukhari":
+      return 'سنن البخاري';
+    case "darimi":
+      return 'سنن الدرامي';
+    case "ibnu-majah":
+      return 'سنن ابن ماجه';
+    case "malik":
+      return 'سنن مالك';
+    case "muslim":
+      return 'سنن مسلم';
+    case "nasai":
+      return 'سنن النسائي';
+    case "tirmidzi":
+      return 'سنن الترمزي';
+    default:
+      return 'حدث خطأ ما';
+  }
+}

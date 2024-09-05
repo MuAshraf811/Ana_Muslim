@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:ana_muslim/core/utils/functions.dart';
+import 'package:ana_muslim/features/home/data/hadith.dart';
 import 'package:ana_muslim/features/home/models/azkar_model.dart';
+import 'package:ana_muslim/features/home/models/hadith_books_model.dart';
 import 'package:ana_muslim/features/home/models/prey_time_model.dart';
 import 'package:ana_muslim/features/home/models/surah_model.dart';
 import 'package:ana_muslim/features/qiblah/data/surah_list.dart';
@@ -19,7 +21,24 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
   late List<AzkarModel> azkrMOdel;
   List<InnerAzkar>? someZekr;
   late PreyTimesModel preyTimes;
+  late List<HadithBooksModel> hadithBooks;
   HomeCubitCubit() : super(HomeCubitInitial());
+
+  void getAllHAdithBooks() async {
+    try {
+      emit(FetchingHadithBooksState());
+      final res = await HadithBooksFetcher.fetchAllHadithBooks();
+      hadithBooks = res
+          .map(
+            (e) => HadithBooksModel.fromJson(e),
+          )
+          .toList();
+
+      emit(FetchingHadithBooksSuccessState());
+    } catch (e) {
+      emit(FetchingHadithBooksErrorState(error: e.toString()));
+    }
+  }
 
   void getPreyTime() async {
     try {

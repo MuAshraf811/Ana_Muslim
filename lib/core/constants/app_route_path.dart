@@ -5,4 +5,6 @@ class RoutesConstants {
   static const azkarView = '/azkarView';
   static const preyTimesView = '/preyTimesView';
   static const sebhaView = '/SebhaView';
+
+  static const hadithView = '/HadithView';
 }

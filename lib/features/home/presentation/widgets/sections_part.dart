@@ -40,8 +40,10 @@ class SectionsContainer extends StatelessWidget {
                 ),
                 CustomGridTile(
                   index: 1,
-                  onTap: () =>
-                      Navigator.pushNamed(context, RoutesConstants.surahsView),
+                  onTap: () {
+                    context.read<HomeCubitCubit>().getAllHAdithBooks();
+                    Navigator.pushNamed(context, RoutesConstants.hadithView);
+                  },
                 ),
                 CustomGridTile(
                   index: 2,
