@@ -30,10 +30,15 @@ class CompassPainter extends CustomPainter {
       ..color = AppColors.greyText
       ..strokeWidth = 3.5.w
       ..style = PaintingStyle.stroke;
+
+    final greyPainter2 = Paint()
+      ..color = Colors.grey
+      ..strokeWidth = 4.4.w
+      ..style = PaintingStyle.stroke;
     final redPainter = Paint()
-      ..color = AppColors.offRed
+      ..color = Colors.red
       ..strokeWidth = 2.w
-      ..style = PaintingStyle.stroke
+      ..style = PaintingStyle.fill
       ..strokeMiterLimit = BorderSide.strokeAlignCenter
       ..isAntiAlias = true
       ..strokeCap = StrokeCap.butt;
@@ -44,14 +49,18 @@ class CompassPainter extends CustomPainter {
     canvas.drawCircle(
         Offset(size.width / 2, size.height / 2), 140.w, greyPainter);
 
-    canvas.drawArc(
-        Rect.fromCircle(
-            center: Offset(size.width / 2, size.height / 2), radius: 140.w),
-        3 * 3.14 / 2.15,
-        -3.14 / 3.5,
-        true,
-        whitePainter);
-    canvas.clipPath(path);
+    canvas.drawCircle(
+        Offset(size.width / 2, size.height / 2), 16.w, redPainter);
+    canvas.drawCircle(
+        Offset(size.width / 2, size.height / 2), 17.w, greyPainter2);
+    // canvas.drawArc(
+    //     Rect.fromCircle(
+    //         center: Offset(size.width / 2, size.height / 2), radius: 140.w),
+    //     3 * 3.14 / 2,
+    //     -3.14 / 3,
+    //     true,
+    //     whitePainter);
+    // canvas.clipPath(path);
   }
 
   @override
