@@ -60,3 +60,9 @@ final class HadithErrorState extends HomeCubitState {
 
   HadithErrorState({required this.error});
 }
+
+final class PaginationState extends HomeCubitState {}
+
+final class ReadyPaginationState extends HomeCubitState {}
+
+final class ErrorPaginationState extends HomeCubitState {}

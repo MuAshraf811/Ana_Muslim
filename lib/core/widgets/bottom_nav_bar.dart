@@ -17,6 +17,7 @@ class CustomNavBAr extends StatelessWidget {
     return BlocBuilder<NavBArCubit, int>(
       builder: (context, state) {
         return BottomNavigationBar(
+          backgroundColor: AppColors.white,
           type: BottomNavigationBarType.shifting,
           elevation: 16,
           useLegacyColorScheme: true,

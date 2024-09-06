@@ -8,8 +8,8 @@ import 'package:ana_muslim/features/home/models/hadith_books_model.dart';
 import 'package:ana_muslim/features/home/models/prey_time_model.dart';
 import 'package:ana_muslim/features/home/models/surah_model.dart';
 import 'package:ana_muslim/features/qiblah/data/surah_list.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:meta/meta.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/pray_time.dart';
@@ -25,13 +25,48 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
   late List<HadithBooksModel> hadithBooks;
   int from = 1;
   int to = 10;
+  bool isLoading = false;
   HomeCubitCubit() : super(HomeCubitInitial());
+  final ScrollController scrollController = ScrollController();
+
+  void watchHadithPagination(String book) {
+    scrollController.addListener(
+      () async {
+        isLoading = true;
+        try {
+          if (scrollController.position.pixels >=
+              scrollController.position.maxScrollExtent) {
+            emit(PaginationState());
+            from = to + 1;
+            to += 10;
+            final res = await HadithBooksFetcher.fetchHadithBook(
+                book: book, from: from, to: to);
+            final data = res
+                .map(
+                  (e) => HadithModel.fromJson(e),
+                )
+                .toList();
+
+            hadith.addAll(data);
+            emit(ReadyPaginationState());
+          }
+        } catch (e) {
+          emit(ErrorPaginationState());
+        } finally {
+          isLoading = false;
+        }
+      },
+    );
+  }
 
   void getHadiths(String book) async {
     try {
       emit(LoadingHadithState());
       final res = await HadithBooksFetcher.fetchHadithBook(
-          book: book, from: from, to: to);
+        book: book,
+        from: from,
+        to: to,
+      );
       hadith = res
           .map(
             (e) => HadithModel.fromJson(e),

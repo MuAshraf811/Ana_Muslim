@@ -10,9 +10,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetailedHadithView extends StatelessWidget {
   const DetailedHadithView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final label = ModalRoute.of(context)?.settings.arguments as String;
+    context.read<HomeCubitCubit>().watchHadithPagination(label);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -41,21 +43,40 @@ class DetailedHadithView extends StatelessWidget {
                 buildWhen: (previous, current) =>
                     current is LoadingHadithState ||
                     current is HadithErrorState ||
-                    current is HadithSuccessState,
+                    current is HadithSuccessState ||
+                    current is PaginationState ||
+                    current is ReadyPaginationState,
                 builder: (context, state) {
-                  if (state is HadithSuccessState) {
+                  if (state is HadithSuccessState ||
+                      state is PaginationState ||
+                      state is ReadyPaginationState) {
                     return Expanded(
                       child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        controller:
+                            context.read<HomeCubitCubit>().scrollController,
                         itemCount: context.read<HomeCubitCubit>().hadith.length,
-                        itemBuilder: (context, index) => SingleHadithItem(
-                            order: context
-                                .read<HomeCubitCubit>()
-                                .hadith[index]
-                                .number,
-                            hadith: context
-                                .read<HomeCubitCubit>()
-                                .hadith[index]
-                                .arab),
+                        itemBuilder: (context, index) {
+                          if (index ==
+                                  context
+                                      .read<HomeCubitCubit>()
+                                      .hadith
+                                      .length &&
+                              state is PaginationState) {
+                            return const Center(
+                              child: CircularProgressIndicator.adaptive(),
+                            );
+                          }
+                          return SingleHadithItem(
+                              order: context
+                                  .read<HomeCubitCubit>()
+                                  .hadith[index]
+                                  .number,
+                              hadith: context
+                                  .read<HomeCubitCubit>()
+                                  .hadith[index]
+                                  .arab);
+                        },
                       ),
                     );
                   }
