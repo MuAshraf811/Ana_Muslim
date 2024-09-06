@@ -1,5 +1,6 @@
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
+import 'package:ana_muslim/core/widgets/svg_handler.dart';
 import 'package:ana_muslim/features/home/presentation/controllers/cubit/home_cubit_cubit.dart';
 import 'package:ana_muslim/features/home/presentation/widgets/quran_view_appbar.dart';
 import 'package:flutter/material.dart';
@@ -46,12 +47,13 @@ class PreyTimeView extends StatelessWidget {
                           const VerticalSpacer(height: 16),
                           Container(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 14.w, vertical: 10.h),
+                                horizontal: 10.w, vertical: 10.h),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6.r),
                                 border: Border.all(
                                     color: AppColors.primaryBlueDarker)),
                             child: RowTexts(
+                                icon: "",
                                 keyText: 'التاريخ الميلادي',
                                 valueText: context
                                     .read<HomeCubitCubit>()
@@ -61,12 +63,13 @@ class PreyTimeView extends StatelessWidget {
                           const VerticalSpacer(height: 6),
                           Container(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 14.w, vertical: 10.h),
+                                horizontal: 10.w, vertical: 10.h),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6.r),
                                 border: Border.all(
                                     color: AppColors.primaryBlueDarker)),
                             child: RowTexts(
+                                icon: "",
                                 keyText: 'التاريخ الهجري',
                                 valueText: context
                                     .read<HomeCubitCubit>()
@@ -86,6 +89,7 @@ class PreyTimeView extends StatelessWidget {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     RowTexts(
+                                        icon: "assets/svgs/moon.svg",
                                         keyText: "الفجر",
                                         valueText: context
                                             .read<HomeCubitCubit>()
@@ -94,6 +98,7 @@ class PreyTimeView extends StatelessWidget {
                                     Divider(
                                         color: AppColors.offRed, height: 26.h),
                                     RowTexts(
+                                        icon: "assets/svgs/sunrise.svg",
                                         keyText: "الشروق",
                                         valueText: context
                                             .read<HomeCubitCubit>()
@@ -102,6 +107,7 @@ class PreyTimeView extends StatelessWidget {
                                     Divider(
                                         color: AppColors.offRed, height: 26.h),
                                     RowTexts(
+                                        icon: "assets/svgs/sun.svg",
                                         keyText: "الظهر",
                                         valueText: context
                                             .read<HomeCubitCubit>()
@@ -110,6 +116,7 @@ class PreyTimeView extends StatelessWidget {
                                     Divider(
                                         color: AppColors.offRed, height: 26.h),
                                     RowTexts(
+                                        icon: "assets/svgs/sunrise.svg",
                                         keyText: "العصر",
                                         valueText: context
                                             .read<HomeCubitCubit>()
@@ -118,6 +125,7 @@ class PreyTimeView extends StatelessWidget {
                                     Divider(
                                         color: AppColors.offRed, height: 26.h),
                                     RowTexts(
+                                        icon: "assets/svgs/sunset.svg",
                                         keyText: "الغروب",
                                         valueText: context
                                             .read<HomeCubitCubit>()
@@ -126,6 +134,7 @@ class PreyTimeView extends StatelessWidget {
                                     Divider(
                                         color: AppColors.offRed, height: 26.h),
                                     RowTexts(
+                                        icon: "assets/svgs/sunset-.svg",
                                         keyText: "المغرب",
                                         valueText: context
                                             .read<HomeCubitCubit>()
@@ -134,6 +143,7 @@ class PreyTimeView extends StatelessWidget {
                                     Divider(
                                         color: AppColors.offRed, height: 26.h),
                                     RowTexts(
+                                        icon: "assets/svgs/moon.svg",
                                         keyText: "العشاء",
                                         valueText: context
                                             .read<HomeCubitCubit>()
@@ -142,6 +152,7 @@ class PreyTimeView extends StatelessWidget {
                                     Divider(
                                         color: AppColors.offRed, height: 26.h),
                                     RowTexts(
+                                        icon: 'assets/svgs/moon.svg',
                                         keyText: "الثلث الأخير",
                                         valueText: context
                                             .read<HomeCubitCubit>()
@@ -219,17 +230,40 @@ class PreyShimmer extends StatelessWidget {
 }
 
 class RowTexts extends StatelessWidget {
-  const RowTexts({super.key, required this.keyText, required this.valueText});
+  const RowTexts(
+      {super.key,
+      required this.keyText,
+      required this.valueText,
+      required this.icon});
   final String keyText;
   final String valueText;
+  final String icon;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text(valueText),
-        Text(keyText),
-      ],
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(
+            valueText,
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const Spacer(flex: 5),
+          Text(
+            keyText,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const Spacer(flex: 1),
+          SvgHandler(imagePath: icon, height: 24, width: 24),
+        ],
+      ),
     );
   }
 }
