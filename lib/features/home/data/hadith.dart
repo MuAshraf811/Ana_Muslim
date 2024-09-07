@@ -24,8 +24,11 @@ class HadithBooksFetcher {
     throw Exception("Some thing went wrong in hadith fetcher");
   }
 
-  static Future<List<dynamic>> fetchHadithBook(
-      {required String book, required int from, required int to}) async {
+  static Future<List<dynamic>> fetchHadithBook({
+    required String book,
+    required int from,
+    required int to,
+  }) async {
     final instance = DioIntializer.init();
     final response = await instance
         .get('https://api.hadith.gading.dev/books/$book?range=$from-$to');

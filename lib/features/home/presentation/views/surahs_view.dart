@@ -24,7 +24,9 @@ class SurahsView extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const CustomAppBar(),
+            CustomAppBar(
+              doAlso: () {},
+            ),
             const VerticalSpacer(height: 24),
             BlocBuilder<HomeCubitCubit, HomeCubitState>(
               buildWhen: (previous, current) =>

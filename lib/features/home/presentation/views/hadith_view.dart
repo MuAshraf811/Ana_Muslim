@@ -21,7 +21,9 @@ class HadithView extends StatelessWidget {
           child: Column(
             children: [
               const VerticalSpacer(height: 20),
-              const CustomAppBar(),
+              CustomAppBar(
+                doAlso: () {},
+              ),
               const VerticalSpacer(height: 24),
               BlocBuilder<HomeCubitCubit, HomeCubitState>(
                 buildWhen: (previous, current) =>

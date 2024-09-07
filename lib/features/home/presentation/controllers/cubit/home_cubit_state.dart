@@ -66,3 +66,13 @@ final class PaginationState extends HomeCubitState {}
 final class ReadyPaginationState extends HomeCubitState {}
 
 final class ErrorPaginationState extends HomeCubitState {}
+
+final class GettingRadioState extends HomeCubitState {}
+
+final class RadioSuccessState extends HomeCubitState {}
+
+final class RadioErrorState extends HomeCubitState {
+  final String error;
+
+  RadioErrorState({required this.error});
+}

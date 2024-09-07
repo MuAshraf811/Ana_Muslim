@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/utils/functions.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
@@ -23,16 +21,16 @@ class DetailedHadithView extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Column(
             children: [
-              const VerticalSpacer(height: 20),
+              const VerticalSpacer(height: 16),
               CustomAppBar(
                 doAlso: () {
                   context.read<HomeCubitCubit>().hadith.clear();
                 },
               ),
-              const VerticalSpacer(height: 16),
+              const VerticalSpacer(height: 6),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 12.h),
-                margin: EdgeInsets.only(bottom: 16.h, left: 12.w, right: 12.w),
+                margin: EdgeInsets.only(bottom: 12.h, left: 12.w, right: 12.w),
                 alignment: Alignment.center,
                 width: MediaQuery.sizeOf(context).width / 2,
                 decoration: BoxDecoration(

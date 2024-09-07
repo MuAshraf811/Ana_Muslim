@@ -17,7 +17,9 @@ class AzkarView extends StatelessWidget {
       body: Column(
         children: [
           const VerticalSpacer(height: 16),
-          const CustomAppBar(),
+          CustomAppBar(
+            doAlso: () {},
+          ),
           const VerticalSpacer(height: 22),
           BlocBuilder<HomeCubitCubit, HomeCubitState>(
             buildWhen: (previous, current) =>

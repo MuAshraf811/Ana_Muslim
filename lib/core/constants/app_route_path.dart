@@ -7,4 +7,5 @@ class RoutesConstants {
   static const sebhaView = '/SebhaView';
   static const detailedHadithView = '/DetailedHadithView';
   static const hadithView = '/HadithView';
+  static const radioView = '/RadioView';
 }

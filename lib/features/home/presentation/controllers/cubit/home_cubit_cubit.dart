@@ -3,9 +3,11 @@ import 'dart:developer';
 
 import 'package:ana_muslim/core/utils/functions.dart';
 import 'package:ana_muslim/features/home/data/hadith.dart';
+import 'package:ana_muslim/features/home/data/radio.dart';
 import 'package:ana_muslim/features/home/models/azkar_model.dart';
 import 'package:ana_muslim/features/home/models/hadith_books_model.dart';
 import 'package:ana_muslim/features/home/models/prey_time_model.dart';
+import 'package:ana_muslim/features/home/models/radio_model.dart';
 import 'package:ana_muslim/features/home/models/surah_model.dart';
 import 'package:ana_muslim/features/qiblah/data/surah_list.dart';
 import 'package:flutter/material.dart';
@@ -20,23 +22,40 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
   List<InnerAzkar>? someZekr;
   late PreyTimesModel preyTimes;
   late List<HadithModel> hadith;
+  late List<RadioModel> radioChannels;
+
   late List<HadithBooksModel> hadithBooks;
   int from = 1;
-  int to = 10;
+  int to = 15;
   bool isLoading = false;
   HomeCubitCubit() : super(HomeCubitInitial());
   final ScrollController scrollController = ScrollController();
+
+  void handleRadio() async {
+    try {
+      emit(GettingRadioState());
+      final res = await RadioManager.getallRadioChannel();
+      radioChannels = res
+          .map(
+            (e) => RadioModel.fromJson(e),
+          )
+          .toList();
+      emit(RadioSuccessState());
+    } catch (e) {
+      emit(RadioErrorState(error: e.toString()));
+    }
+  }
 
   void watchHadithPagination(String book) {
     scrollController.addListener(
       () async {
         try {
-          if (scrollController.position.pixels >=
+          if (scrollController.position.pixels ==
               scrollController.position.maxScrollExtent) {
             isLoading = true;
             emit(PaginationState());
             from = to + 1;
-            to += 10;
+            to += 15;
             final res = await HadithBooksFetcher.fetchHadithBook(
                 book: book, from: from, to: to);
             final data = res
@@ -45,7 +64,7 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
                 )
                 .toList();
 
-            hadith.addAll(data);
+            hadith = [...hadith, ...data];
             emit(ReadyPaginationState());
           }
         } catch (e) {
@@ -100,8 +119,8 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
       final currentDate = getCurrentDate();
       final result = await PrayTimesCall.getPreyTimesByDateAndLocation(
         date: currentDate,
-        latitude: 30.434822,
-        longitude: 31.48655,
+        city: "cairo",
+        country: "egypt",
       );
       preyTimes = PreyTimesModel.fromjson(result);
       emit(FetchingPreyTimeSuccessState());
@@ -142,7 +161,6 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
           .toList();
       emit(InitializingAzkarSuccessState());
     } catch (e) {
-      log("==========================> $e");
       emit(
         InitializingAzkarErrorState(
           error: e.toString(),

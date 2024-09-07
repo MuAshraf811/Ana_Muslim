@@ -7,12 +7,12 @@ class PrayTimesCall {
 
   static Future<Map<String, dynamic>> getPreyTimesByDateAndLocation(
       {required String date,
-      required double latitude,
-      required double longitude}) async {
+      required String city,
+      required String country}) async {
     final obj = DioIntializer.init();
     final res = await obj.get(
       '${EndPoinds.prayTimesEndpoint}$date?',
-      queryParameters: {"latitude": latitude, "longitude": longitude},
+      queryParameters: {"city": city, "country": country},
     );
     if (res.statusCode == 200) {
       return res.data["data"];

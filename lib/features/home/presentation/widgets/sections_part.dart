@@ -59,7 +59,8 @@ class SectionsContainer extends StatelessWidget {
                 CustomGridTile(
                   index: 3,
                   onTap: () {
-                    Navigator.pushNamed(context, RoutesConstants.azkarView);
+                    context.read<HomeCubitCubit>().handleRadio();
+                    Navigator.pushNamed(context, RoutesConstants.radioView);
                   },
                 ),
                 CustomGridTile(

@@ -4,6 +4,7 @@ import 'package:ana_muslim/features/home/presentation/views/detailed_hadith_view
 import 'package:ana_muslim/features/home/presentation/views/hadith_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/home_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/prey_time_view.dart';
+import 'package:ana_muslim/features/home/presentation/views/radio_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/sebha_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/surahs_view.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,10 @@ class AppRouter {
       case RoutesConstants.preyTimesView:
         return MaterialPageRoute(
           builder: (context) => const PreyTimeView(),
+        );
+      case RoutesConstants.radioView:
+        return MaterialPageRoute(
+          builder: (context) => const RadioView(),
         );
       case RoutesConstants.sebhaView:
         return MaterialPageRoute(
