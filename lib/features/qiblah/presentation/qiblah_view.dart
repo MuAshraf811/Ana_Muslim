@@ -1,4 +1,5 @@
 import 'package:ana_muslim/core/constants/app_colors.dart';
+import 'package:ana_muslim/core/widgets/spacers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,13 +8,57 @@ class QiblahView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final height = MediaQuery.sizeOf(context).height;
-    // final width = MediaQuery.sizeOf(context).height;
+    final height = MediaQuery.sizeOf(context).height;
+    final width = MediaQuery.sizeOf(context).height;
 
-    return Center(
-      child: CustomPaint(
-        painter: CompassPainter(),
-      ),
+    return Column(
+      //mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const VerticalSpacer(height: 24),
+        Container(
+          width: width / 3,
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              border: Border.all(color: AppColors.primaryBlueDarker)),
+          child: const Text(
+            ' فَوَلِّ وَجْهَكَ شَطْرَ الْمَسْجِدِ الْحَرَامِ',
+            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+          ),
+        ),
+        const VerticalSpacer(height: 32),
+        const Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              'فاقوس الشرقية',
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+            ),
+            Text(
+              ' محل إقامتك ',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            ),
+          ],
+        ),
+        const VerticalSpacer(height: 32),
+        Stack(
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 16.w),
+              height: height / 2,
+              color: AppColors.homeScaffoldContainer.withOpacity(0.3),
+            ),
+            Positioned(
+              left: width / 4,
+              top: height / 4,
+              child: CustomPaint(
+                painter: CompassPainter(),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

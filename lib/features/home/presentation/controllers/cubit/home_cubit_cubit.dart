@@ -11,9 +11,7 @@ import 'package:ana_muslim/features/qiblah/data/surah_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../data/pray_time.dart';
-
 part 'home_cubit_state.dart';
 
 class HomeCubitCubit extends Cubit<HomeCubitState> {
@@ -32,10 +30,10 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
   void watchHadithPagination(String book) {
     scrollController.addListener(
       () async {
-        isLoading = true;
         try {
           if (scrollController.position.pixels >=
               scrollController.position.maxScrollExtent) {
+            isLoading = true;
             emit(PaginationState());
             from = to + 1;
             to += 10;

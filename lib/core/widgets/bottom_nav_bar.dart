@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/app_colors.dart';
-import '../styles/text_styles.dart';
 
 class CustomNavBAr extends StatelessWidget {
   const CustomNavBAr({
@@ -46,8 +45,8 @@ class CustomNavBAr extends StatelessWidget {
                       ),
                       const HorizontalSpacer(width: 6),
                       Text(
-                        'Home',
-                        style: getBoldStyle(
+                        'الرئيسية',
+                        style: TextStyle(
                           fontSize: 15,
                           color: context.read<NavBArCubit>().state == 0
                               ? AppColors.primaryBlue
@@ -80,8 +79,8 @@ class CustomNavBAr extends StatelessWidget {
                           width: 18),
                       const HorizontalSpacer(width: 6),
                       Text(
-                        'Qiblah',
-                        style: getBoldStyle(
+                        'القبلة',
+                        style: TextStyle(
                           fontSize: 15,
                           color: context.read<NavBArCubit>().state == 1
                               ? AppColors.primaryBlue
@@ -114,8 +113,8 @@ class CustomNavBAr extends StatelessWidget {
                           width: 18),
                       const HorizontalSpacer(width: 6),
                       Text(
-                        'Profile',
-                        style: getBoldStyle(
+                        'الإعدادات',
+                        style: TextStyle(
                           fontSize: 15,
                           color: context.read<NavBArCubit>().state == 2
                               ? AppColors.primaryBlue

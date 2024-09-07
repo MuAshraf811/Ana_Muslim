@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:ana_muslim/core/network/dio_intializer.dart';
 import 'package:ana_muslim/core/network/endpoints_constants.dart';
 
@@ -6,12 +9,17 @@ class HadithBooksFetcher {
 
   static Future<List<dynamic>> fetchAllHadithBooks() async {
     final instance = DioIntializer.init();
-    final response = await instance.get(
-      EndPoinds.allHadithBooks,
-    );
+    final response = await instance.get(EndPoinds.allHadithBooks);
 
     if (response.statusCode == 200) {
-      return response.data["data"];
+      try {
+        final res = jsonDecode(response.data);
+
+        return res["data"];
+      } catch (e) {
+        log("message");
+        log(e.toString());
+      }
     }
     throw Exception("Some thing went wrong in hadith fetcher");
   }

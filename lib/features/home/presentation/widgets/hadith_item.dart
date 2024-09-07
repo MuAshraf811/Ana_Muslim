@@ -50,7 +50,7 @@ class HadithItem extends StatelessWidget {
                 context
                     .read<HomeCubitCubit>()
                     .hadithBooks[index]
-                    .count
+                    .available
                     .toString(),
                 style: const TextStyle(
                   color: AppColors.offRed,

@@ -11,12 +11,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/widgets/bottom_nav_bar.dart';
+import '../../../setting/presentation/settings_view.dart';
 import '../widgets/islamic_info.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
-  static const List<Widget> _views = [HomePage(), QiblahView()];
+  static const List<Widget> _views = [HomePage(), QiblahView(), SettingsView()];
 
   @override
   Widget build(BuildContext context) {

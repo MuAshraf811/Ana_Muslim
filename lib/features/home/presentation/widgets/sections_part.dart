@@ -1,7 +1,6 @@
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/constants/app_route_path.dart';
 import 'package:ana_muslim/core/constants/sections_constanst.dart';
-import 'package:ana_muslim/core/styles/text_styles.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
 import 'package:ana_muslim/features/home/presentation/controllers/cubit/home_cubit_cubit.dart';
 import 'package:flutter/material.dart';
@@ -48,8 +47,8 @@ class SectionsContainer extends StatelessWidget {
                 CustomGridTile(
                   index: 2,
                   onTap: () {
-                    context.read<HomeCubitCubit>().getPreyTime();
-                    Navigator.pushNamed(context, RoutesConstants.preyTimesView);
+                    context.read<HomeCubitCubit>().initAzkarjson();
+                    Navigator.pushNamed(context, RoutesConstants.azkarView);
                   },
                 ),
               ],
@@ -60,19 +59,20 @@ class SectionsContainer extends StatelessWidget {
                 CustomGridTile(
                   index: 3,
                   onTap: () {
-                    context.read<HomeCubitCubit>().initAzkarjson();
                     Navigator.pushNamed(context, RoutesConstants.azkarView);
                   },
                 ),
                 CustomGridTile(
                   index: 4,
                   onTap: () =>
-                      Navigator.pushNamed(context, RoutesConstants.azkarView),
+                      Navigator.pushNamed(context, RoutesConstants.sebhaView),
                 ),
                 CustomGridTile(
                   index: 5,
-                  onTap: () =>
-                      Navigator.pushNamed(context, RoutesConstants.sebhaView),
+                  onTap: () {
+                    context.read<HomeCubitCubit>().getPreyTime();
+                    Navigator.pushNamed(context, RoutesConstants.preyTimesView);
+                  },
                 ),
               ],
             ),
@@ -105,13 +105,8 @@ class CustomGridTile extends StatelessWidget {
           ),
         ),
         const VerticalSpacer(height: 2),
-        Text(
-          sectionTitles[index],
-          style: getBoldStyle(
-            fontSize: 14,
-            color: AppColors.blackText,
-          ),
-        ),
+        Text(sectionTitles[index],
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
       ],
     );
   }

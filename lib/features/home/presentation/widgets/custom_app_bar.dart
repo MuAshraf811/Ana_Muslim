@@ -8,15 +8,19 @@ import '../../../../core/widgets/svg_handler.dart';
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
+    this.doAlso,
   });
-
+  final VoidCallback? doAlso;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         InkWell(
-          onTap: () => Navigator.pop(context),
+          onTap: () {
+            doAlso!();
+            Navigator.pop(context);
+          },
           child: Container(
             width: 44.w,
             height: 42.h,

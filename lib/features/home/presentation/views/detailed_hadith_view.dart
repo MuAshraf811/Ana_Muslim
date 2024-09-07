@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/utils/functions.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
@@ -22,7 +24,11 @@ class DetailedHadithView extends StatelessWidget {
           child: Column(
             children: [
               const VerticalSpacer(height: 20),
-              const CustomAppBar(),
+              CustomAppBar(
+                doAlso: () {
+                  context.read<HomeCubitCubit>().hadith.clear();
+                },
+              ),
               const VerticalSpacer(height: 16),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 12.h),
@@ -55,16 +61,26 @@ class DetailedHadithView extends StatelessWidget {
                         scrollDirection: Axis.vertical,
                         controller:
                             context.read<HomeCubitCubit>().scrollController,
-                        itemCount: context.read<HomeCubitCubit>().hadith.length,
+                        itemCount: context.read<HomeCubitCubit>().isLoading
+                            ? context.read<HomeCubitCubit>().hadith.length + 1
+                            : context.read<HomeCubitCubit>().hadith.length,
                         itemBuilder: (context, index) {
-                          if (index ==
+                          if (index >=
                                   context
                                       .read<HomeCubitCubit>()
                                       .hadith
                                       .length &&
                               state is PaginationState) {
-                            return const Center(
-                              child: CircularProgressIndicator.adaptive(),
+                            return Padding(
+                              padding: EdgeInsets.symmetric(vertical: 12.h),
+                              child: const Center(
+                                child: CircularProgressIndicator.adaptive(
+                                  backgroundColor:
+                                      AppColors.homeScaffoldContainer,
+                                  valueColor:
+                                      AlwaysStoppedAnimation(AppColors.offRed),
+                                ),
+                              ),
                             );
                           }
                           return SingleHadithItem(
