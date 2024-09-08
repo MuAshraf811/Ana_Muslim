@@ -8,6 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../../core/cubit/internet_chicker/internet_connection_checker_cubit.dart';
+
 class PreyTimeView extends StatelessWidget {
   const PreyTimeView({super.key});
 
@@ -25,147 +27,184 @@ class PreyTimeView extends StatelessWidget {
                     "إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا",
               ),
               const VerticalSpacer(height: 22),
-              BlocBuilder<HomeCubitCubit, HomeCubitState>(
-                buildWhen: (previous, current) =>
-                    current is FetchingPreyTimeState ||
-                    current is FetchingPreyTimeErrorState ||
-                    current is FetchingPreyTimeSuccessState,
-                builder: (context, state) {
-                  if (state is FetchingPreyTimeSuccessState) {
-                    return Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            context.read<HomeCubitCubit>().preyTimes.weekDay,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.blackText,
-                            ),
-                          ),
-                          const VerticalSpacer(height: 16),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10.w, vertical: 10.h),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6.r),
-                                border: Border.all(
-                                    color: AppColors.primaryBlueDarker)),
-                            child: RowTexts(
-                                icon: "",
-                                keyText: 'التاريخ الميلادي',
-                                valueText: context
-                                    .read<HomeCubitCubit>()
-                                    .preyTimes
-                                    .date),
-                          ),
-                          const VerticalSpacer(height: 6),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10.w, vertical: 10.h),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6.r),
-                                border: Border.all(
-                                    color: AppColors.primaryBlueDarker)),
-                            child: RowTexts(
-                                icon: "",
-                                keyText: 'التاريخ الهجري',
-                                valueText: context
-                                    .read<HomeCubitCubit>()
-                                    .preyTimes
-                                    .hijiriDate),
-                          ),
-                          const VerticalSpacer(height: 16),
-                          Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 14.w, vertical: 16.h),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: AppColors.offRed),
-                                  borderRadius: BorderRadius.circular(6.r)),
-                              child: IntrinsicHeight(
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    RowTexts(
-                                        icon: "assets/svgs/moon.svg",
-                                        keyText: "الفجر",
-                                        valueText: context
-                                            .read<HomeCubitCubit>()
-                                            .preyTimes
-                                            .fajr),
-                                    Divider(
-                                        color: AppColors.offRed, height: 26.h),
-                                    RowTexts(
-                                        icon: "assets/svgs/sunrise.svg",
-                                        keyText: "الشروق",
-                                        valueText: context
-                                            .read<HomeCubitCubit>()
-                                            .preyTimes
-                                            .sunRise),
-                                    Divider(
-                                        color: AppColors.offRed, height: 26.h),
-                                    RowTexts(
-                                        icon: "assets/svgs/sun.svg",
-                                        keyText: "الظهر",
-                                        valueText: context
-                                            .read<HomeCubitCubit>()
-                                            .preyTimes
-                                            .dhuhr),
-                                    Divider(
-                                        color: AppColors.offRed, height: 26.h),
-                                    RowTexts(
-                                        icon: "assets/svgs/sunrise.svg",
-                                        keyText: "العصر",
-                                        valueText: context
-                                            .read<HomeCubitCubit>()
-                                            .preyTimes
-                                            .asr),
-                                    Divider(
-                                        color: AppColors.offRed, height: 26.h),
-                                    RowTexts(
-                                        icon: "assets/svgs/sunset.svg",
-                                        keyText: "الغروب",
-                                        valueText: context
-                                            .read<HomeCubitCubit>()
-                                            .preyTimes
-                                            .sunSet),
-                                    Divider(
-                                        color: AppColors.offRed, height: 26.h),
-                                    RowTexts(
-                                        icon: "assets/svgs/sunset-.svg",
-                                        keyText: "المغرب",
-                                        valueText: context
-                                            .read<HomeCubitCubit>()
-                                            .preyTimes
-                                            .maghrib),
-                                    Divider(
-                                        color: AppColors.offRed, height: 26.h),
-                                    RowTexts(
-                                        icon: "assets/svgs/moon.svg",
-                                        keyText: "العشاء",
-                                        valueText: context
-                                            .read<HomeCubitCubit>()
-                                            .preyTimes
-                                            .isha),
-                                    Divider(
-                                        color: AppColors.offRed, height: 26.h),
-                                    RowTexts(
-                                        icon: 'assets/svgs/moon.svg',
-                                        keyText: "الثلث الأخير",
-                                        valueText: context
-                                            .read<HomeCubitCubit>()
-                                            .preyTimes
-                                            .lastThird),
-                                  ],
-                                ),
-                              )),
-                        ],
+              BlocConsumer<InternetConnectionCheckerCubit,
+                  InternetConnectionCheckerState>(
+                listener: (context, state) {
+                  if (state is InternetConnectionState) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          'Succefully connected o internet',
+                          style: TextStyle(color: AppColors.white),
+                        ),
+                        backgroundColor: AppColors.primary,
+                        showCloseIcon: true,
                       ),
                     );
                   }
-                  return const Expanded(child: PreyShimmer());
+                },
+                builder: (context, state) {
+                  if (state is InternetConnectionState) {
+                    return BlocBuilder<HomeCubitCubit, HomeCubitState>(
+                      buildWhen: (previous, current) =>
+                          current is FetchingPreyTimeState ||
+                          current is FetchingPreyTimeErrorState ||
+                          current is FetchingPreyTimeSuccessState,
+                      builder: (context, state) {
+                        if (state is FetchingPreyTimeSuccessState) {
+                          return Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  context
+                                      .read<HomeCubitCubit>()
+                                      .preyTimes
+                                      .weekDay,
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.blackText,
+                                  ),
+                                ),
+                                const VerticalSpacer(height: 16),
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 10.w, vertical: 10.h),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(6.r),
+                                      border: Border.all(
+                                          color: AppColors.primaryBlueDarker)),
+                                  child: RowTexts(
+                                      icon: "",
+                                      keyText: 'التاريخ الميلادي',
+                                      valueText: context
+                                          .read<HomeCubitCubit>()
+                                          .preyTimes
+                                          .date),
+                                ),
+                                const VerticalSpacer(height: 6),
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 10.w, vertical: 10.h),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(6.r),
+                                      border: Border.all(
+                                          color: AppColors.primaryBlueDarker)),
+                                  child: RowTexts(
+                                      icon: "",
+                                      keyText: 'التاريخ الهجري',
+                                      valueText: context
+                                          .read<HomeCubitCubit>()
+                                          .preyTimes
+                                          .hijiriDate),
+                                ),
+                                const VerticalSpacer(height: 16),
+                                Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 14.w, vertical: 16.h),
+                                    decoration: BoxDecoration(
+                                        border:
+                                            Border.all(color: AppColors.offRed),
+                                        borderRadius:
+                                            BorderRadius.circular(6.r)),
+                                    child: IntrinsicHeight(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          RowTexts(
+                                              icon: "assets/svgs/moon.svg",
+                                              keyText: "الفجر",
+                                              valueText: context
+                                                  .read<HomeCubitCubit>()
+                                                  .preyTimes
+                                                  .fajr),
+                                          Divider(
+                                              color: AppColors.offRed,
+                                              height: 26.h),
+                                          RowTexts(
+                                              icon: "assets/svgs/sunrise.svg",
+                                              keyText: "الشروق",
+                                              valueText: context
+                                                  .read<HomeCubitCubit>()
+                                                  .preyTimes
+                                                  .sunRise),
+                                          Divider(
+                                              color: AppColors.offRed,
+                                              height: 26.h),
+                                          RowTexts(
+                                              icon: "assets/svgs/sun.svg",
+                                              keyText: "الظهر",
+                                              valueText: context
+                                                  .read<HomeCubitCubit>()
+                                                  .preyTimes
+                                                  .dhuhr),
+                                          Divider(
+                                              color: AppColors.offRed,
+                                              height: 26.h),
+                                          RowTexts(
+                                              icon: "assets/svgs/sunrise.svg",
+                                              keyText: "العصر",
+                                              valueText: context
+                                                  .read<HomeCubitCubit>()
+                                                  .preyTimes
+                                                  .asr),
+                                          Divider(
+                                              color: AppColors.offRed,
+                                              height: 26.h),
+                                          RowTexts(
+                                              icon: "assets/svgs/sunset.svg",
+                                              keyText: "الغروب",
+                                              valueText: context
+                                                  .read<HomeCubitCubit>()
+                                                  .preyTimes
+                                                  .sunSet),
+                                          Divider(
+                                              color: AppColors.offRed,
+                                              height: 26.h),
+                                          RowTexts(
+                                              icon: "assets/svgs/sunset-.svg",
+                                              keyText: "المغرب",
+                                              valueText: context
+                                                  .read<HomeCubitCubit>()
+                                                  .preyTimes
+                                                  .maghrib),
+                                          Divider(
+                                              color: AppColors.offRed,
+                                              height: 26.h),
+                                          RowTexts(
+                                              icon: "assets/svgs/moon.svg",
+                                              keyText: "العشاء",
+                                              valueText: context
+                                                  .read<HomeCubitCubit>()
+                                                  .preyTimes
+                                                  .isha),
+                                          Divider(
+                                              color: AppColors.offRed,
+                                              height: 26.h),
+                                          RowTexts(
+                                              icon: 'assets/svgs/moon.svg',
+                                              keyText: "الثلث الأخير",
+                                              valueText: context
+                                                  .read<HomeCubitCubit>()
+                                                  .preyTimes
+                                                  .lastThird),
+                                        ],
+                                      ),
+                                    )),
+                              ],
+                            ),
+                          );
+                        }
+                        return const Expanded(child: PreyShimmer());
+                      },
+                    );
+                  }
+                  return const Center(
+                    child: Text(
+                        "OOpS ,It seems that there is no Internet Connection"),
+                  );
                 },
               ),
             ],

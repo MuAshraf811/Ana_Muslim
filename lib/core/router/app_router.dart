@@ -1,3 +1,4 @@
+import 'package:ana_muslim/core/cubit/internet_chicker/internet_connection_checker_cubit.dart';
 import 'package:ana_muslim/features/home/presentation/controllers/provider/sebha_provider.dart';
 import 'package:ana_muslim/features/home/presentation/views/azkar_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/detailed_hadith_view.dart';
@@ -7,7 +8,9 @@ import 'package:ana_muslim/features/home/presentation/views/prey_time_view.dart'
 import 'package:ana_muslim/features/home/presentation/views/radio_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/sebha_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/surahs_view.dart';
+import 'package:ana_muslim/features/setting/presentation/profile_info.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../constants/app_route_path.dart';
@@ -27,9 +30,17 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => const AzkarView(),
         );
+      case RoutesConstants.profileInfoView:
+        return MaterialPageRoute(
+          builder: (context) => const ProfileInfoView(),
+        );
       case RoutesConstants.preyTimesView:
         return MaterialPageRoute(
-          builder: (context) => const PreyTimeView(),
+          builder: (context) => BlocProvider<InternetConnectionCheckerCubit>(
+            create: (context) =>
+                InternetConnectionCheckerCubit()..checkInternetConnection(),
+            child: const PreyTimeView(),
+          ),
         );
       case RoutesConstants.radioView:
         return MaterialPageRoute(
@@ -45,7 +56,11 @@ class AppRouter {
 
       case RoutesConstants.hadithView:
         return MaterialPageRoute(
-          builder: (context) => const HadithView(),
+          builder: (context) => BlocProvider<InternetConnectionCheckerCubit>(
+            create: (context) =>
+                InternetConnectionCheckerCubit()..checkInternetConnection(),
+            child: const HadithView(),
+          ),
         );
       case RoutesConstants.detailedHadithView:
         return MaterialPageRoute(

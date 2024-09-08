@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:ana_muslim/core/network/dio_intializer.dart';
@@ -13,7 +12,7 @@ class HadithBooksFetcher {
 
     if (response.statusCode == 200) {
       try {
-        final res = jsonDecode(response.data);
+        final res = response.data;
 
         return res["data"];
       } catch (e) {

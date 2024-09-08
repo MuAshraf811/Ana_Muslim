@@ -139,7 +139,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       cursorWidth: 1.5.w,
       autocorrect: true,
       obscuringCharacter: '*',
-      style: getRegularStyle(
+      style: TextStyle(
           fontSize: 14,
           color: isFoucsed
               ? widget.fontColor ?? AppColors.primary
@@ -157,7 +157,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             Text(
               widget.label,
               style: widget.labelStyle ??
-                  getRegularStyle(
+                  TextStyle(
                       fontSize: 14,
                       color: isFoucsed && isKeyboard
                           ? AppColors.primary

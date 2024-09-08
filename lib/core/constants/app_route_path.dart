@@ -1,5 +1,5 @@
 class RoutesConstants {
-  static const homePage = '/';
+  static const homePage = '/HomeView';
   static const surahsView = '/surahsView';
   static const quranView = '/quranView';
   static const azkarView = '/azkarView';
@@ -8,4 +8,5 @@ class RoutesConstants {
   static const detailedHadithView = '/DetailedHadithView';
   static const hadithView = '/HadithView';
   static const radioView = '/RadioView';
+  static const profileInfoView = '/';
 }

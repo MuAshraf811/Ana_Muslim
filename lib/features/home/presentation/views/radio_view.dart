@@ -1,6 +1,7 @@
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
 import 'package:ana_muslim/features/home/presentation/controllers/cubit/home_cubit_cubit.dart';
+import 'package:ana_muslim/features/home/presentation/views/dummy_web.dart';
 import 'package:ana_muslim/features/home/presentation/widgets/custom_app_bar.dart';
 import 'package:ana_muslim/features/home/presentation/widgets/hadith_shimmer.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,13 @@ class RadioView extends StatelessWidget {
                         itemCount:
                             context.read<HomeCubitCubit>().radioChannels.length,
                         itemBuilder: (context, index) => InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const DummyWeb(),
+                                ));
+                          },
                           child: Container(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 12.w, vertical: 14.h),
