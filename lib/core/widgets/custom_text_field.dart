@@ -109,24 +109,22 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         return !widget.isBuildCounterWantd
             ? null
             : Transform(
-                transform: Matrix4.translationValues(0, -32.h, 0),
+                transform: Matrix4.translationValues(0, 2.h, 0),
                 child: RichText(
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: '$currentLength',
-                        style: getRegularStyle(
-                          fontSize: 10,
-                          color: AppColors.primary,
-                          fontFamily: FontConstants.latoFontFamily,
+                        text: '$currentLength ',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: AppColors.offRed,
                         ),
                       ),
                       TextSpan(
-                        text: '/$maxLength',
-                        style: getRegularStyle(
-                          fontSize: 10,
+                        text: '|$maxLength',
+                        style: const TextStyle(
+                          fontSize: 13,
                           color: AppColors.greyText,
-                          fontFamily: FontConstants.latoFontFamily,
                         ),
                       ),
                     ],
@@ -146,7 +144,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               : AppColors.greyText,
           fontFamily: FontConstants.latoFontFamily),
       decoration: InputDecoration(
-        fillColor: widget.fillColor ?? AppColors.greyText.withOpacity(0.22),
+        fillColor: widget.fillColor ?? AppColors.greyText.withOpacity(0.18),
         suffixIconConstraints: BoxConstraints(minHeight: 16.h, minWidth: 16.w),
         constraints: BoxConstraints(
           maxHeight: widget.textFormFieldHeight?.h ?? 52.h,
