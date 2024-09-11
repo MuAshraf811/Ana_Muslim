@@ -1,22 +1,17 @@
-import 'dart:math';
-
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/cubit/nav_b_ar_cubit.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
-import 'package:ana_muslim/core/widgets/svg_handler.dart';
-import 'package:ana_muslim/features/home/presentation/controllers/cubit/home_cubit_cubit.dart';
 import 'package:ana_muslim/features/home/presentation/widgets/location_and_image.dart';
 import 'package:ana_muslim/features/home/presentation/widgets/prayer_times_part.dart';
 import 'package:ana_muslim/features/home/presentation/widgets/search_and_notification.dart';
 import 'package:ana_muslim/features/home/presentation/widgets/sections_part.dart';
 import 'package:ana_muslim/features/qiblah/presentation/qiblah_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shimmer/shimmer.dart';
 import '../../../../core/widgets/bottom_nav_bar.dart';
 import '../../../setting/presentation/settings_view.dart';
+import '../widgets/random_zekr_container.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -96,96 +91,7 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.symmetric(horizontal: 16.w),
-          padding: EdgeInsets.symmetric(horizontal: 26.w, vertical: 14.h),
-          decoration: BoxDecoration(
-            color: AppColors.white,
-            border: Border.all(color: AppColors.primaryBlueDarker),
-            borderRadius: BorderRadius.circular(6.r),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Row(
-                children: [
-                  InkWell(
-                      onTap: () {},
-                      child: const SvgHandler(
-                        imagePath: 'assets/svgs/share 1.svg',
-                        height: 20,
-                        width: 24,
-                      )),
-                  const HorizontalSpacer(width: 24),
-                  InkWell(
-                    onTap: () {
-                      context.read<HomeCubitCubit>().copyText(context);
-                    },
-                    child: const SvgHandler(
-                      imagePath: 'assets/svgs/order-nav.svg',
-                      height: 20,
-                      width: 24,
-                      color: AppColors.offRed,
-                    ),
-                  ),
-                  const Spacer(),
-                  const Text(
-                    ' من الأذكار المنسية',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: AppColors.black,
-                      letterSpacing: 1.5,
-                    ),
-                  ),
-                ],
-              ),
-              const VerticalSpacer(height: 12),
-              Divider(
-                color: AppColors.offRed,
-                endIndent: 16.w,
-                indent: 16.w,
-              ),
-              const VerticalSpacer(height: 12),
-              BlocBuilder<HomeCubitCubit, HomeCubitState>(
-                buildWhen: (previous, current) =>
-                    current is RandomZekrState ||
-                    current is RandomZekrSuccessState ||
-                    current is RandomZekrErrorState,
-                builder: (context, state) {
-                  if (state is RandomZekrSuccessState) {
-                    return Text(
-                      context.read<HomeCubitCubit>().randomZekeText,
-                      textDirection: TextDirection.rtl,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: AppColors.black,
-                        letterSpacing: 1.5,
-                      ),
-                    );
-                  }
-                  return Shimmer.fromColors(
-                    baseColor: Colors.grey.shade300,
-                    highlightColor: Colors.grey.shade100,
-                    child: Container(
-                      height: 32.h,
-                      width: 75.w,
-                      margin: EdgeInsets.all(2.w),
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-        // const Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-        //   children: [
-        //     DatePart(),
-        //     //  HorizontalSpacer(width: 8),
-        //     IslamicInformation(),
-        //   ],
-        // ),
+        const RandomZekrContainer(),
       ],
     );
   }
