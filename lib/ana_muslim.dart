@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:ana_muslim/core/cubit/nav_b_ar_cubit.dart';
 import 'package:ana_muslim/core/router/app_router.dart';
 import 'package:ana_muslim/features/home/presentation/controllers/cubit/home_cubit_cubit.dart';
@@ -22,8 +20,7 @@ class AnaMuslim extends StatelessWidget {
             create: (context) => NavBArCubit(),
           ),
           BlocProvider<HomeCubitCubit>(
-            create: (context) => HomeCubitCubit()
-              ..chooseSpacificZekr(index: Random().nextInt(20)),
+            create: (context) => HomeCubitCubit()..generateCustomZekr(),
           ),
         ],
         child: MaterialApp(

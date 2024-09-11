@@ -76,3 +76,13 @@ final class RadioErrorState extends HomeCubitState {
 
   RadioErrorState({required this.error});
 }
+
+final class RandomZekrState extends HomeCubitState {}
+
+final class RandomZekrSuccessState extends HomeCubitState {}
+
+final class RandomZekrErrorState extends HomeCubitState {
+  final String error;
+
+  RandomZekrErrorState({required this.error});
+}

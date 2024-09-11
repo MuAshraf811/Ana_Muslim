@@ -11,6 +11,7 @@ import 'package:ana_muslim/features/home/presentation/widgets/search_and_notific
 import 'package:ana_muslim/features/home/presentation/widgets/sections_part.dart';
 import 'package:ana_muslim/features/qiblah/presentation/qiblah_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
@@ -118,7 +119,9 @@ class HomePage extends StatelessWidget {
                       )),
                   const HorizontalSpacer(width: 24),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      context.read<HomeCubitCubit>().copyText(context);
+                    },
                     child: const SvgHandler(
                       imagePath: 'assets/svgs/order-nav.svg',
                       height: 20,
@@ -146,15 +149,13 @@ class HomePage extends StatelessWidget {
               const VerticalSpacer(height: 12),
               BlocBuilder<HomeCubitCubit, HomeCubitState>(
                 buildWhen: (previous, current) =>
-                    current is DetailedAzkarState ||
-                    current is DetailedAzkarSuccessState,
+                    current is RandomZekrState ||
+                    current is RandomZekrSuccessState ||
+                    current is RandomZekrErrorState,
                 builder: (context, state) {
-                  if (state is DetailedAzkarSuccessState) {
+                  if (state is RandomZekrSuccessState) {
                     return Text(
-                      context
-                          .read<HomeCubitCubit>()
-                          .someZekr![Random().nextInt(1)]
-                          .text,
+                      context.read<HomeCubitCubit>().randomZekeText,
                       textDirection: TextDirection.rtl,
                       style: const TextStyle(
                         fontSize: 16,

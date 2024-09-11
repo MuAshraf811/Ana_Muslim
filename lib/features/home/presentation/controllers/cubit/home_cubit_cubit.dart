@@ -1,7 +1,9 @@
 import 'dart:convert';
-import 'dart:developer';
+import 'dart:math';
 
+import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/utils/functions.dart';
+import 'package:ana_muslim/core/widgets/snack_bar.dart';
 import 'package:ana_muslim/features/home/data/hadith.dart';
 import 'package:ana_muslim/features/home/data/radio.dart';
 import 'package:ana_muslim/features/home/models/azkar_model.dart';
@@ -10,6 +12,7 @@ import 'package:ana_muslim/features/home/models/prey_time_model.dart';
 import 'package:ana_muslim/features/home/models/radio_model.dart';
 import 'package:ana_muslim/features/home/models/surah_model.dart';
 import 'package:ana_muslim/features/qiblah/data/surah_list.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,13 +26,47 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
   late PreyTimesModel preyTimes;
   late List<HadithModel> hadith;
   late List<RadioModel> radioChannels;
-
+  late String randomZekeText;
   late List<HadithBooksModel> hadithBooks;
   int from = 1;
   int to = 15;
   bool isLoading = false;
   HomeCubitCubit() : super(HomeCubitInitial());
   final ScrollController scrollController = ScrollController();
+
+  copyText(BuildContext context) {
+    Clipboard.setData(ClipboardData(text: randomZekeText)).then(
+      (_) {
+        showCustomSnackBar(context, "تم نسخ النص بنجاح", AppColors.offRed);
+      },
+    );
+  }
+
+  generateCustomZekr() async {
+    emit(RandomZekrState());
+    try {
+      emit(RandomZekrState());
+      if (someZekr != null) {
+        someZekr!.clear();
+      }
+      final res = await rootBundle.loadString("assets/jsons/adhkar.json");
+      final List<dynamic> response = jsonDecode(res);
+      final random = Random().nextInt(response.length - 1);
+      final List<dynamic> spacificList = response[random]['array'];
+      someZekr = spacificList
+          .map(
+            (e) => InnerAzkar.fromJson(e),
+          )
+          .toList();
+      randomZekeText = someZekr![someZekr!.length - 1].text;
+      emit(RandomZekrSuccessState());
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+      emit(RandomZekrErrorState(error: e.toString()));
+    }
+  }
 
   void handleRadio() async {
     try {
@@ -145,7 +182,9 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
           .toList();
       emit(DetailedAzkarSuccessState());
     } catch (e) {
-      log("$e");
+      if (kDebugMode) {
+        print("$e");
+      }
     }
   }
 
