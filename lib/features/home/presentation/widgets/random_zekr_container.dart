@@ -1,3 +1,4 @@
+import 'package:ana_muslim/core/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,11 +30,24 @@ class RandomZekrContainer extends StatelessWidget {
           Row(
             children: [
               InkWell(
-                  onTap: () {},
-                  child: const SvgHandler(
-                    imagePath: 'assets/svgs/share 1.svg',
-                    height: 20,
-                    width: 24,
+                  onTap: () {
+                    context.read<HomeCubitCubit>().shareText();
+                  },
+                  child: BlocListener<HomeCubitCubit, HomeCubitState>(
+                    listenWhen: (previous, current) =>
+                        current is ShareRandomZekrState ||
+                        current is ShareRandomZekrSuccessState,
+                    listener: (context, state) {
+                      if (state is ShareRandomZekrState) {
+                        showCustomSnackBar(
+                            context, 'Wait a second', AppColors.offRed);
+                      }
+                    },
+                    child: const SvgHandler(
+                      imagePath: 'assets/svgs/share 1.svg',
+                      height: 20,
+                      width: 24,
+                    ),
                   )),
               const HorizontalSpacer(width: 24),
               InkWell(

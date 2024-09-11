@@ -8,7 +8,7 @@ showCustomSnackBar(BuildContext context, String text, Color backgroundColor,
     SnackBar(
       backgroundColor: backgroundColor,
       behavior: SnackBarBehavior.floating,
-      margin: EdgeInsets.symmetric(horizontal: 18.w, vertical: 16.h),
+      margin: EdgeInsets.symmetric(horizontal: 18.w, vertical: 8.h),
       showCloseIcon: true,
       closeIconColor: AppColors.white,
       duration: Duration(seconds: duration),

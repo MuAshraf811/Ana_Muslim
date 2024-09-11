@@ -86,3 +86,7 @@ final class RandomZekrErrorState extends HomeCubitState {
 
   RandomZekrErrorState({required this.error});
 }
+
+final class ShareRandomZekrSuccessState extends HomeCubitState {}
+
+final class ShareRandomZekrState extends HomeCubitState {}

@@ -16,6 +16,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../../data/pray_time.dart';
 part 'home_cubit_state.dart';
 
@@ -33,6 +34,18 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
   bool isLoading = false;
   HomeCubitCubit() : super(HomeCubitInitial());
   final ScrollController scrollController = ScrollController();
+
+  shareText() async {
+    try {
+      emit(ShareRandomZekrState());
+      await Share.share(randomZekeText, subject: "share");
+      emit(ShareRandomZekrSuccessState());
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+    }
+  }
 
   copyText(BuildContext context) {
     Clipboard.setData(ClipboardData(text: randomZekeText)).then(
