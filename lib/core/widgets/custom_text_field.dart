@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../constants/app_colors.dart';
 import '../styles/app_font_manager.dart';
-import '../styles/text_styles.dart';
 
 class CustomTextFormField extends StatefulWidget {
   const CustomTextFormField({

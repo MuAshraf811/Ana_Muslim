@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
 import 'package:flutter/material.dart';
