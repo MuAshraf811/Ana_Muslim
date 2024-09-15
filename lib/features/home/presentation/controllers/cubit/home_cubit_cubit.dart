@@ -8,6 +8,7 @@ import 'package:ana_muslim/features/home/models/azkar_model.dart';
 import 'package:ana_muslim/features/home/models/hadith_books_model.dart';
 import 'package:ana_muslim/features/home/models/prey_times_model2.dart';
 import 'package:ana_muslim/features/home/models/radio_model.dart';
+import 'package:ana_muslim/features/home/models/salah_model.dart';
 import 'package:ana_muslim/features/home/models/surah_model.dart';
 import 'package:ana_muslim/features/qiblah/data/surah_list.dart';
 import 'package:flutter/foundation.dart';
@@ -27,11 +28,29 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
   late List<RadioModel> radioChannels;
   late String randomZekeText;
   late List<HadithBooksModel> hadithBooks;
+  List<SalahModel> salahZekr = [];
   int from = 1;
   int to = 15;
   bool isLoading = false;
+  bool isListCollapsedInPreyZekr = true;
   HomeCubitCubit() : super(HomeCubitInitial());
   final ScrollController scrollController = ScrollController();
+
+  void getSallahZeker() async {
+    try {
+      emit(LoadingListCollapsedState());
+      final data = await rootBundle.loadString("assets/jsons/azkar_salah.json");
+      final List<dynamic> res = jsonDecode(data);
+      salahZekr = res
+          .map(
+            (e) => SalahModel.fromJson(e),
+          )
+          .toList();
+      emit(ListCollapsedState());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
   void getAllPreyTime() async {
     try {

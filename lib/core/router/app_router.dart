@@ -6,6 +6,7 @@ import 'package:ana_muslim/features/home/presentation/views/hadith_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/home_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/prey_time_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/radio_view.dart';
+import 'package:ana_muslim/features/home/presentation/views/salleh_zekr_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/sebha_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/surahs_view.dart';
 import 'package:ana_muslim/features/setting/presentation/profile_info.dart';
@@ -66,6 +67,11 @@ class AppRouter {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => const DetailedHadithView(),
+        );
+      case RoutesConstants.sallehZekrView:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => const SallehZekrView(),
         );
 
       default:

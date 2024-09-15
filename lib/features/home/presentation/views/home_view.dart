@@ -1,4 +1,5 @@
 import 'package:ana_muslim/core/constants/app_colors.dart';
+import 'package:ana_muslim/core/constants/app_route_path.dart';
 import 'package:ana_muslim/core/cubit/nav_b_ar_cubit.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
 import 'package:ana_muslim/features/home/presentation/controllers/cubit/home_cubit_cubit.dart';
@@ -100,6 +101,36 @@ class HomePage extends StatelessWidget {
           ],
         ),
         const RandomZekrContainer(),
+        const VerticalSpacer(height: 24),
+        InkWell(
+          onTap: () {
+            context.read<HomeCubitCubit>().getSallahZeker();
+            Navigator.pushNamed(context, RoutesConstants.sallehZekrView);
+          },
+          child: Container(
+            padding: EdgeInsets.only(
+                right: 22.w, left: 22.h, top: 14.h, bottom: 12.h),
+            margin: EdgeInsets.symmetric(horizontal: 16.w),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.r),
+                border: Border.all(color: AppColors.offRed)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Icon(
+                  Icons.arrow_back_ios,
+                  size: 18.w,
+                  color: AppColors.offRed,
+                ),
+                const Text(
+                  "أذكار مابعد الصلاة",
+                  style: TextStyle(fontSize: 18),
+                )
+              ],
+            ),
+          ),
+        ),
+        const VerticalSpacer(height: 16),
       ],
     );
   }

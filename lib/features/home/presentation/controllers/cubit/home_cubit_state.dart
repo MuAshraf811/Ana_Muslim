@@ -90,3 +90,7 @@ final class RandomZekrErrorState extends HomeCubitState {
 final class ShareRandomZekrSuccessState extends HomeCubitState {}
 
 final class ShareRandomZekrState extends HomeCubitState {}
+
+final class ListCollapsedState extends HomeCubitState {}
+
+final class LoadingListCollapsedState extends HomeCubitState {}

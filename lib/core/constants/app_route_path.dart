@@ -9,4 +9,5 @@ class RoutesConstants {
   static const hadithView = '/HadithView';
   static const radioView = '/RadioView';
   static const profileInfoView = '/';
+  static const sallehZekrView = '/SallehZekrView';
 }
