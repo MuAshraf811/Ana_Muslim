@@ -10,7 +10,7 @@ class QuranAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 18.w),
+      padding: EdgeInsets.symmetric(horizontal: 10.w),
       child: Row(
         children: [
           InkWell(
@@ -29,7 +29,7 @@ class QuranAppBar extends StatelessWidget {
               ),
             ),
           ),
-          const HorizontalSpacer(width: 8),
+          const HorizontalSpacer(width: 24),
           Container(
             height: 32.h,
             //  width: 220.w,

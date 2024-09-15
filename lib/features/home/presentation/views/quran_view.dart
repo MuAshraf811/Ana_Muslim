@@ -29,21 +29,23 @@ class _QuranViewState extends State<QuranView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const VerticalSpacer(height: 16),
-          const QuranAppBar(),
-          const VerticalSpacer(height: 18),
-          Expanded(
-            child: PageView.builder(
-              itemCount: 604,
-              controller: controller,
-              scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) =>
-                  QuranOnePageItem(pageIndex: index),
+      body: SafeArea(
+        child: Column(
+          children: [
+            const VerticalSpacer(height: 16),
+            const QuranAppBar(),
+            const VerticalSpacer(height: 18),
+            Expanded(
+              child: PageView.builder(
+                itemCount: 604,
+                controller: controller,
+                scrollDirection: Axis.vertical,
+                itemBuilder: (context, index) =>
+                    QuranOnePageItem(pageIndex: index),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

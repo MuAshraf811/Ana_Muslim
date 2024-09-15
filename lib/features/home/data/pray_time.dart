@@ -1,17 +1,13 @@
 import 'package:ana_muslim/core/network/dio_intializer.dart';
 
-import '../../../core/network/endpoints_constants.dart';
-
 class PrayTimesCall {
   PrayTimesCall._();
 
-  static Future<Map<String, dynamic>> getPreyTimesByDateAndLocation(
-      {required String date,
-      required String city,
-      required String country}) async {
+  static Future<List<dynamic>> getMonthPreyTimesByDateAndLocation(
+      {required String city, required String country}) async {
     final obj = DioIntializer.init();
     final res = await obj.get(
-      '${EndPoinds.prayTimesEndpoint}$date?',
+      'https://api.aladhan.com/v1/calendarByCity/2024/09',
       queryParameters: {"city": city, "country": country},
     );
     if (res.statusCode == 200) {

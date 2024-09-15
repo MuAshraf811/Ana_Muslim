@@ -14,73 +14,76 @@ class AzkarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const VerticalSpacer(height: 16),
-          CustomAppBar(
-            doAlso: () {},
-          ),
-          const VerticalSpacer(height: 22),
-          BlocBuilder<HomeCubitCubit, HomeCubitState>(
-            buildWhen: (previous, current) =>
-                current is InitializingAzkarErrorState ||
-                current is InitializingAzkarState ||
-                current is InitializingAzkarSuccessState,
-            builder: (context, state) {
-              if (state is InitializingAzkarSuccessState) {
-                return Expanded(
-                  child: ListView.builder(
-                    itemCount: context.read<HomeCubitCubit>().azkrMOdel.length,
-                    itemBuilder: (context, index) => InkWell(
-                      onTap: () {
-                        context
-                            .read<HomeCubitCubit>()
-                            .chooseSpacificZekr(index: index);
-
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const AzkarDetailedView(),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        height: 56.h,
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 16.w, vertical: 12.h),
-                        margin: EdgeInsets.only(
-                            left: 26.w, right: 18.w, bottom: 14.h),
-                        decoration: BoxDecoration(
-                          color: AppColors.primaryBlueDarker.withOpacity(0.7),
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(26.r),
-                            bottomRight: Radius.circular(26.r),
-                          ),
-                        ),
-                        child: Text(
+      body: SafeArea(
+        child: Column(
+          children: [
+            const VerticalSpacer(height: 16),
+            CustomAppBar(
+              doAlso: () {},
+            ),
+            const VerticalSpacer(height: 22),
+            BlocBuilder<HomeCubitCubit, HomeCubitState>(
+              buildWhen: (previous, current) =>
+                  current is InitializingAzkarErrorState ||
+                  current is InitializingAzkarState ||
+                  current is InitializingAzkarSuccessState,
+              builder: (context, state) {
+                if (state is InitializingAzkarSuccessState) {
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount:
+                          context.read<HomeCubitCubit>().azkrMOdel.length,
+                      itemBuilder: (context, index) => InkWell(
+                        onTap: () {
                           context
                               .read<HomeCubitCubit>()
-                              .azkrMOdel[index]
-                              .category,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.white,
+                              .chooseSpacificZekr(index: index);
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const AzkarDetailedView(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: 56.h,
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16.w, vertical: 12.h),
+                          margin: EdgeInsets.only(
+                              left: 26.w, right: 18.w, bottom: 14.h),
+                          decoration: BoxDecoration(
+                            color: AppColors.primaryBlueDarker.withOpacity(0.7),
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(26.r),
+                              bottomRight: Radius.circular(26.r),
+                            ),
+                          ),
+                          child: Text(
+                            context
+                                .read<HomeCubitCubit>()
+                                .azkrMOdel[index]
+                                .category,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.white,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
+                  );
+                }
+                return const Expanded(
+                  child: CustomAzkarShimmer(),
                 );
-              }
-              return const Expanded(
-                child: CustomAzkarShimmer(),
-              );
-            },
-          ),
-        ],
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

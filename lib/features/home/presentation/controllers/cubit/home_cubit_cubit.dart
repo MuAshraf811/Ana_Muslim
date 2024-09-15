@@ -1,14 +1,12 @@
 import 'dart:convert';
 import 'dart:math';
-
 import 'package:ana_muslim/core/constants/app_colors.dart';
-import 'package:ana_muslim/core/utils/functions.dart';
 import 'package:ana_muslim/core/widgets/snack_bar.dart';
 import 'package:ana_muslim/features/home/data/hadith.dart';
 import 'package:ana_muslim/features/home/data/radio.dart';
 import 'package:ana_muslim/features/home/models/azkar_model.dart';
 import 'package:ana_muslim/features/home/models/hadith_books_model.dart';
-import 'package:ana_muslim/features/home/models/prey_time_model.dart';
+import 'package:ana_muslim/features/home/models/prey_times_model2.dart';
 import 'package:ana_muslim/features/home/models/radio_model.dart';
 import 'package:ana_muslim/features/home/models/surah_model.dart';
 import 'package:ana_muslim/features/qiblah/data/surah_list.dart';
@@ -24,7 +22,7 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
   late List<SurahModel> allSurahs;
   late List<AzkarModel> azkrMOdel;
   List<InnerAzkar>? someZekr;
-  late PreyTimesModel preyTimes;
+  late List<PreyTimesModelTwo> allPreyTimes;
   late List<HadithModel> hadith;
   late List<RadioModel> radioChannels;
   late String randomZekeText;
@@ -34,6 +32,23 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
   bool isLoading = false;
   HomeCubitCubit() : super(HomeCubitInitial());
   final ScrollController scrollController = ScrollController();
+
+  void getAllPreyTime() async {
+    try {
+      emit(FetchingPreyTimeState());
+      // final myLocation = await LocationHandler.getuserCurrentLocation();
+      final result = await PrayTimesCall.getMonthPreyTimesByDateAndLocation(
+          city: "cairo", country: "egypt");
+      allPreyTimes = result
+          .map(
+            (e) => PreyTimesModelTwo.fromjson(e),
+          )
+          .toList();
+      emit(FetchingPreyTimeSuccessState());
+    } catch (e) {
+      emit(FetchingPreyTimeErrorState(error: e.toString()));
+    }
+  }
 
   shareText() async {
     try {
@@ -159,23 +174,6 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
       emit(FetchingHadithBooksSuccessState());
     } catch (e) {
       emit(FetchingHadithBooksErrorState(error: e.toString()));
-    }
-  }
-
-  void getPreyTime() async {
-    try {
-      emit(FetchingPreyTimeState());
-      // final myLocation = await LocationHandler.getuserCurrentLocation();
-      final currentDate = getCurrentDate();
-      final result = await PrayTimesCall.getPreyTimesByDateAndLocation(
-        date: currentDate,
-        city: "cairo",
-        country: "egypt",
-      );
-      preyTimes = PreyTimesModel.fromjson(result);
-      emit(FetchingPreyTimeSuccessState());
-    } catch (e) {
-      emit(FetchingPreyTimeErrorState(error: e.toString()));
     }
   }
 

@@ -71,7 +71,7 @@ class SectionsContainer extends StatelessWidget {
                 CustomGridTile(
                   index: 5,
                   onTap: () {
-                    context.read<HomeCubitCubit>().getPreyTime();
+                    context.read<HomeCubitCubit>().getAllPreyTime();
                     Navigator.pushNamed(context, RoutesConstants.preyTimesView);
                   },
                 ),

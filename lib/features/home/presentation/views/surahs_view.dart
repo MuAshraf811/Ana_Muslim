@@ -16,62 +16,65 @@ class SurahsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      body: Padding(
-        padding: EdgeInsets.only(
-          left: 12.w,
-          right: 12.w,
-          top: 26.h,
-        ),
-        child: Column(
-          children: [
-            CustomAppBar(
-              doAlso: () {},
-            ),
-            const VerticalSpacer(height: 24),
-            BlocBuilder<HomeCubitCubit, HomeCubitState>(
-              buildWhen: (previous, current) =>
-                  current is FetchingSurahsState ||
-                  current is FetchingSurahSuccesssState ||
-                  current is FetchingSurahErrorState,
-              builder: (context, state) {
-                if (state is FetchingSurahSuccesssState) {
-                  return Expanded(
-                    child: ListView.separated(
-                      padding: EdgeInsets.symmetric(horizontal: 14.w),
-                      itemCount:
-                          context.read<HomeCubitCubit>().allSurahs.length,
-                      separatorBuilder: (context, index) => Divider(
-                        endIndent: 8.w,
-                        indent: 8.w,
-                        height: 18.h,
-                        color: AppColors.primaryBlueDarker,
-                      ),
-                      itemBuilder: (context, index) => InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => QuranView(
-                                page: goToSpacificSurahDependOnItsOrder(index),
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: 12.w,
+            right: 12.w,
+            top: 26.h,
+          ),
+          child: Column(
+            children: [
+              CustomAppBar(
+                doAlso: () {},
+              ),
+              const VerticalSpacer(height: 24),
+              BlocBuilder<HomeCubitCubit, HomeCubitState>(
+                buildWhen: (previous, current) =>
+                    current is FetchingSurahsState ||
+                    current is FetchingSurahSuccesssState ||
+                    current is FetchingSurahErrorState,
+                builder: (context, state) {
+                  if (state is FetchingSurahSuccesssState) {
+                    return Expanded(
+                      child: ListView.separated(
+                        padding: EdgeInsets.symmetric(horizontal: 14.w),
+                        itemCount:
+                            context.read<HomeCubitCubit>().allSurahs.length,
+                        separatorBuilder: (context, index) => Divider(
+                          endIndent: 8.w,
+                          indent: 8.w,
+                          height: 18.h,
+                          color: AppColors.primaryBlueDarker,
+                        ),
+                        itemBuilder: (context, index) => InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => QuranView(
+                                  page:
+                                      goToSpacificSurahDependOnItsOrder(index),
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        borderRadius: BorderRadius.circular(8.r),
-                        highlightColor: AppColors.white,
-                        hoverColor:
-                            AppColors.homeScaffoldContainer.withOpacity(0.2),
-                        child: SurahItem(index: index),
+                            );
+                          },
+                          borderRadius: BorderRadius.circular(8.r),
+                          highlightColor: AppColors.white,
+                          hoverColor:
+                              AppColors.homeScaffoldContainer.withOpacity(0.2),
+                          child: SurahItem(index: index),
+                        ),
                       ),
-                    ),
+                    );
+                  }
+                  return const Expanded(
+                    child: AllSurahsShimmer(),
                   );
-                }
-                return const Expanded(
-                  child: AllSurahsShimmer(),
-                );
-              },
-            ),
-          ],
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

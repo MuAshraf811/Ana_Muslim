@@ -13,53 +13,55 @@ class AzkarDetailedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
-        child: Column(
-          children: [
-            const VerticalSpacer(height: 18),
-            CustomAppBar(
-              doAlso: () {},
-            ),
-            const VerticalSpacer(height: 16),
-            BlocBuilder<HomeCubitCubit, HomeCubitState>(
-              buildWhen: (previous, current) =>
-                  current is DetailedAzkarState ||
-                  current is DetailedAzkarSuccessState,
-              builder: (context, state) {
-                if (state is DetailedAzkarSuccessState) {
-                  return Expanded(
-                    child: ListView.builder(
-                      itemCount:
-                          context.read<HomeCubitCubit>().someZekr!.length,
-                      itemBuilder: (context, index) => Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 12.w, vertical: 16.h),
-                        margin: EdgeInsets.only(bottom: 16.h),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: AppColors.homeScaffoldContainer),
-                            borderRadius: BorderRadius.circular(8.r)),
-                        child: Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: Text(
-                            context
-                                .read<HomeCubitCubit>()
-                                .someZekr![index]
-                                .text,
-                            textAlign: TextAlign.right,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Column(
+            children: [
+              const VerticalSpacer(height: 18),
+              CustomAppBar(
+                doAlso: () {},
+              ),
+              const VerticalSpacer(height: 16),
+              BlocBuilder<HomeCubitCubit, HomeCubitState>(
+                buildWhen: (previous, current) =>
+                    current is DetailedAzkarState ||
+                    current is DetailedAzkarSuccessState,
+                builder: (context, state) {
+                  if (state is DetailedAzkarSuccessState) {
+                    return Expanded(
+                      child: ListView.builder(
+                        itemCount:
+                            context.read<HomeCubitCubit>().someZekr!.length,
+                        itemBuilder: (context, index) => Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 12.w, vertical: 16.h),
+                          margin: EdgeInsets.only(bottom: 16.h),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: AppColors.homeScaffoldContainer),
+                              borderRadius: BorderRadius.circular(8.r)),
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Text(
+                              context
+                                  .read<HomeCubitCubit>()
+                                  .someZekr![index]
+                                  .text,
+                              textAlign: TextAlign.right,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                }
-                return const Center(
-                    child: CircularProgressIndicator.adaptive());
-              },
-            )
-          ],
+                    );
+                  }
+                  return const Center(
+                      child: CircularProgressIndicator.adaptive());
+                },
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/cubit/nav_b_ar_cubit.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
+import 'package:ana_muslim/features/home/presentation/controllers/cubit/home_cubit_cubit.dart';
 import 'package:ana_muslim/features/home/presentation/widgets/location_and_image.dart';
 import 'package:ana_muslim/features/home/presentation/widgets/prayer_times_part.dart';
 import 'package:ana_muslim/features/home/presentation/widgets/search_and_notification.dart';
@@ -16,7 +17,14 @@ import '../widgets/random_zekr_container.dart';
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
-  static const List<Widget> _views = [HomePage(), QiblahView(), SettingsView()];
+  static final List<Widget> _views = [
+    const HomePage(),
+    const QiblahView(),
+    BlocProvider<HomeCubitCubit>(
+      create: (context) => HomeCubitCubit()..getAllPreyTime(),
+      child: const SettingsView(),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
