@@ -49,7 +49,6 @@ class QiblahView extends StatelessWidget {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 16.w),
               height: height / 2,
-              color: AppColors.homeScaffoldContainer.withOpacity(0.3),
             ),
             Positioned(
               left: width / 4,

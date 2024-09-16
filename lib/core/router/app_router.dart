@@ -1,5 +1,6 @@
 import 'package:ana_muslim/core/cubit/internet_chicker/internet_connection_checker_cubit.dart';
 import 'package:ana_muslim/features/home/presentation/controllers/provider/sebha_provider.dart';
+import 'package:ana_muslim/features/home/presentation/views/asmaa_allah.dart';
 import 'package:ana_muslim/features/home/presentation/views/azkar_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/detailed_hadith_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/hadith_view.dart';
@@ -72,6 +73,11 @@ class AppRouter {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => const SallehZekrView(),
+        );
+      case RoutesConstants.asmaaAllahView:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => const AsmaaAllahView(),
         );
 
       default:

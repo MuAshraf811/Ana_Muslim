@@ -77,6 +77,31 @@ class SectionsContainer extends StatelessWidget {
                 ),
               ],
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                CustomGridTile(
+                  index: 6,
+                  onTap: () {
+                    context.read<HomeCubitCubit>().getAsmaaAllah();
+
+                    Navigator.pushNamed(
+                        context, RoutesConstants.asmaaAllahView);
+                  },
+                ),
+                CustomGridTile(
+                  index: 7,
+                  onTap: () =>
+                      Navigator.pushNamed(context, RoutesConstants.sebhaView),
+                ),
+                CustomGridTile(
+                  index: 8,
+                  onTap: () {
+                    Navigator.pushNamed(context, RoutesConstants.preyTimesView);
+                  },
+                ),
+              ],
+            ),
           ],
         ),
       ),

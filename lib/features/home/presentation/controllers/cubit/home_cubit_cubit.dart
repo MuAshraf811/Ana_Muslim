@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:ana_muslim/core/constants/app_colors.dart';
+import 'package:ana_muslim/core/utils/functions.dart';
 import 'package:ana_muslim/core/widgets/snack_bar.dart';
 import 'package:ana_muslim/features/home/data/hadith.dart';
 import 'package:ana_muslim/features/home/data/radio.dart';
+import 'package:ana_muslim/features/home/models/asmaa_allah_model.dart';
 import 'package:ana_muslim/features/home/models/azkar_model.dart';
 import 'package:ana_muslim/features/home/models/hadith_books_model.dart';
 import 'package:ana_muslim/features/home/models/prey_times_model2.dart';
@@ -24,10 +26,12 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
   late List<AzkarModel> azkrMOdel;
   List<InnerAzkar>? someZekr;
   late List<PreyTimesModelTwo> allPreyTimes;
+  late PreyTimesModelTwo preyTimeAtSomeDay;
   late List<HadithModel> hadith;
   late List<RadioModel> radioChannels;
   late String randomZekeText;
   late List<HadithBooksModel> hadithBooks;
+  late List<AsmaaAllahModel> asmaaAllah;
   List<SalahModel> salahZekr = [];
   int from = 1;
   int to = 15;
@@ -35,6 +39,28 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
   bool isListCollapsedInPreyZekr = true;
   HomeCubitCubit() : super(HomeCubitInitial());
   final ScrollController scrollController = ScrollController();
+
+  void getAsmaaAllah() async {
+    try {
+      emit(AsmaaAllahLoadingState());
+      final data = await rootBundle.loadString("assets/jsons/asmaa_allah.json");
+      final List<dynamic> res = jsonDecode(data);
+      asmaaAllah = res
+          .map(
+            (e) => AsmaaAllahModel.fromJson(e),
+          )
+          .toList();
+      emit(AsmaaAllahLoadedState());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  void resturnPreyTimeAtSpacificDay() {
+    preyTimeAtSomeDay = allPreyTimes.where(
+      (element) => element.date == getCurrentDate(),
+    ) as PreyTimesModelTwo;
+  }
 
   void getSallahZeker() async {
     try {

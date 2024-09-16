@@ -94,3 +94,7 @@ final class ShareRandomZekrState extends HomeCubitState {}
 final class ListCollapsedState extends HomeCubitState {}
 
 final class LoadingListCollapsedState extends HomeCubitState {}
+
+final class AsmaaAllahLoadedState extends HomeCubitState {}
+
+final class AsmaaAllahLoadingState extends HomeCubitState {}

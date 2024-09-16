@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
           children: [
             Stack(
               children: [
-                SizedBox(height: 495.h, width: double.infinity),
+                SizedBox(height: 600.h, width: double.infinity),
                 Container(
                   width: double.infinity,
                   height: 360.h,

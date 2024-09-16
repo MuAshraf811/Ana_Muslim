@@ -5,8 +5,9 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/spacers.dart';
 
 class QuranAppBar extends StatelessWidget {
-  const QuranAppBar({super.key, this.text});
+  const QuranAppBar({super.key, this.text, this.borederClor});
   final String? text;
+  final Color? borederClor;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +22,7 @@ class QuranAppBar extends StatelessWidget {
               width: 32.w,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4.r),
-                border: Border.all(color: AppColors.offRed),
+                border: Border.all(color: borederClor ?? AppColors.offRed),
               ),
               child: Icon(
                 Icons.arrow_back_ios,
@@ -29,15 +30,15 @@ class QuranAppBar extends StatelessWidget {
               ),
             ),
           ),
-          const HorizontalSpacer(width: 24),
+          const HorizontalSpacer(width: 10),
           Container(
             height: 32.h,
             //  width: 220.w,
-            padding: EdgeInsets.symmetric(horizontal: 6.w),
+            padding: EdgeInsets.symmetric(horizontal: 8.w),
             alignment: Alignment.center,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4.r),
-              border: Border.all(color: AppColors.offRed),
+              border: Border.all(color: borederClor ?? AppColors.offRed),
             ),
             child: Text(
               text ??
