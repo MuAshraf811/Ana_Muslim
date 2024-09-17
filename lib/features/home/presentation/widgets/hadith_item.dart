@@ -19,7 +19,7 @@ class HadithItem extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 10.h, left: 12.w, right: 12.w),
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 14.h),
       decoration: BoxDecoration(
-          border: Border.all(color: AppColors.offRed),
+          border: Border.all(color: AppColors.primary),
           borderRadius: BorderRadius.circular(6.r)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

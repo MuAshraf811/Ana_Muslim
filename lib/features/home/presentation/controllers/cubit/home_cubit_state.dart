@@ -98,3 +98,31 @@ final class LoadingListCollapsedState extends HomeCubitState {}
 final class AsmaaAllahLoadedState extends HomeCubitState {}
 
 final class AsmaaAllahLoadingState extends HomeCubitState {}
+
+final class DoaaLoadingState extends HomeCubitState {}
+
+final class DoaaLoadedState extends HomeCubitState {}
+
+final class NawawyLoadingState extends HomeCubitState {}
+
+final class NawawyLoadedState extends HomeCubitState {}
+
+final class RandomDoaaState extends HomeCubitState {}
+
+final class RandomDoaaSuccessState extends HomeCubitState {}
+
+final class RandomDoaaErrorState extends HomeCubitState {
+  final String error;
+
+  RandomDoaaErrorState({required this.error});
+}
+
+final class RandomAsmState extends HomeCubitState {}
+
+final class RandomAsmSuccessState extends HomeCubitState {}
+
+final class RandomAsmErrorState extends HomeCubitState {
+  final String error;
+
+  RandomAsmErrorState({required this.error});
+}

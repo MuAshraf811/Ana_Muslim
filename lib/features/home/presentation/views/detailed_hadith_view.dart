@@ -35,7 +35,7 @@ class DetailedHadithView extends StatelessWidget {
                 width: MediaQuery.sizeOf(context).width / 2,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.r),
-                  border: Border.all(color: AppColors.offRed),
+                  border: Border.all(color: AppColors.primary),
                 ),
                 child: Text(
                   translateHadithName(label),
@@ -75,8 +75,8 @@ class DetailedHadithView extends StatelessWidget {
                                 child: CircularProgressIndicator.adaptive(
                                   backgroundColor:
                                       AppColors.homeScaffoldContainer,
-                                  valueColor:
-                                      AlwaysStoppedAnimation(AppColors.offRed),
+                                  valueColor: AlwaysStoppedAnimation(
+                                      AppColors.secondry),
                                 ),
                               ),
                             );
@@ -123,7 +123,7 @@ class SingleHadithItem extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.r),
-        border: Border.all(color: AppColors.offRed),
+        border: Border.all(color: AppColors.primary),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,7 +134,7 @@ class SingleHadithItem extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(8.r)),
-                color: AppColors.offRed),
+                color: AppColors.secondry),
             child: Text(
               order.toString(),
               style: const TextStyle(color: AppColors.white),
@@ -146,6 +146,7 @@ class SingleHadithItem extends StatelessWidget {
               textDirection: TextDirection.rtl,
               child: Text(
                 hadith,
+                style: const TextStyle(fontSize: 16),
               ),
             ),
           )

@@ -39,8 +39,7 @@ class AzkarDetailedView extends StatelessWidget {
                           margin: EdgeInsets.only(bottom: 16.h),
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: AppColors.homeScaffoldContainer),
+                              border: Border.all(color: AppColors.primary),
                               borderRadius: BorderRadius.circular(8.r)),
                           child: Directionality(
                             textDirection: TextDirection.rtl,
@@ -49,7 +48,8 @@ class AzkarDetailedView extends StatelessWidget {
                                   .read<HomeCubitCubit>()
                                   .someZekr![index]
                                   .text,
-                              textAlign: TextAlign.right,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(fontSize: 16),
                             ),
                           ),
                         ),

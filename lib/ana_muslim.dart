@@ -20,7 +20,10 @@ class AnaMuslim extends StatelessWidget {
             create: (context) => NavBArCubit(),
           ),
           BlocProvider<HomeCubitCubit>(
-            create: (context) => HomeCubitCubit()..generateCustomZekr(),
+            create: (context) => HomeCubitCubit()
+              ..generateCustomZekr()
+              ..generateCustomDoaa()
+              ..generateCustomAllahName(),
           ),
         ],
         child: MaterialApp(

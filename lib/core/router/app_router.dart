@@ -3,8 +3,10 @@ import 'package:ana_muslim/features/home/presentation/controllers/provider/sebha
 import 'package:ana_muslim/features/home/presentation/views/asmaa_allah.dart';
 import 'package:ana_muslim/features/home/presentation/views/azkar_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/detailed_hadith_view.dart';
+import 'package:ana_muslim/features/home/presentation/views/doaa_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/hadith_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/home_view.dart';
+import 'package:ana_muslim/features/home/presentation/views/nawawy_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/prey_time_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/radio_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/salleh_zekr_view.dart';
@@ -78,6 +80,16 @@ class AppRouter {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => const AsmaaAllahView(),
+        );
+      case RoutesConstants.doaaView:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => const DoaaView(),
+        );
+      case RoutesConstants.nawawyView:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (context) => const NawawyView(),
         );
 
       default:

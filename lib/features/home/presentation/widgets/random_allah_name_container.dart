@@ -8,8 +8,8 @@ import '../../../../core/widgets/spacers.dart';
 import '../../../../core/widgets/svg_handler.dart';
 import '../controllers/cubit/home_cubit_cubit.dart';
 
-class RandomZekrContainer extends StatelessWidget {
-  const RandomZekrContainer({
+class RandomAllahNameContainer extends StatelessWidget {
+  const RandomAllahNameContainer({
     super.key,
   });
 
@@ -58,61 +58,61 @@ class RandomZekrContainer extends StatelessWidget {
                   imagePath: 'assets/svgs/order-nav.svg',
                   height: 20,
                   width: 24,
-                  color: AppColors.offRed,
+                  color: AppColors.secondry,
                 ),
               ),
               const Spacer(),
-              const Text(
-                ' من الأذكار المنسية',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: AppColors.black,
-                  letterSpacing: 1.5,
-                ),
+              const Row(
+                children: [
+                  Text(
+                    ' من أسماء الله',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.greyText,
+                      letterSpacing: 1.5,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
           const VerticalSpacer(height: 12),
           Divider(
-            color: AppColors.primary,
+            color: AppColors.greyText,
             endIndent: 16.w,
             indent: 16.w,
           ),
           const VerticalSpacer(height: 6),
           BlocBuilder<HomeCubitCubit, HomeCubitState>(
             buildWhen: (previous, current) =>
-                current is RandomZekrState ||
-                current is RandomZekrSuccessState ||
-                current is RandomZekrErrorState,
+                current is RandomAsmState ||
+                current is RandomAsmSuccessState ||
+                current is RandomAsmErrorState,
             builder: (context, state) {
-              if (state is RandomZekrSuccessState) {
-                return IntrinsicHeight(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        context.read<HomeCubitCubit>().someZekrCategoryName!,
-                        textDirection: TextDirection.rtl,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: AppColors.secondry,
-                          letterSpacing: 1.5,
-                        ),
+              if (state is RandomAsmSuccessState) {
+                return Column(
+                  children: [
+                    Text(
+                      context.read<HomeCubitCubit>().someName!.ttl,
+                      textDirection: TextDirection.rtl,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: AppColors.primary,
+                        letterSpacing: 1.5,
                       ),
-                      const VerticalSpacer(height: 8),
-                      Text(
-                        context.read<HomeCubitCubit>().randomZekeText,
-                        textDirection: TextDirection.rtl,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: AppColors.black,
-                          letterSpacing: 1.5,
-                        ),
+                    ),
+                    const VerticalSpacer(height: 4),
+                    Text(
+                      context.read<HomeCubitCubit>().someName!.dsc,
+                      textDirection: TextDirection.rtl,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: AppColors.black,
+                        letterSpacing: 1.5,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 );
               }
               return Shimmer.fromColors(

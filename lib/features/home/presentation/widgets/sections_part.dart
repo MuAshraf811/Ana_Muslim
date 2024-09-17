@@ -16,7 +16,7 @@ class SectionsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 340.w,
-      margin: EdgeInsets.symmetric(horizontal: 10.w),
+      margin: EdgeInsets.symmetric(horizontal: 4.w),
       padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w),
       decoration: BoxDecoration(
         color: AppColors.textFieldFillColor.withOpacity(0.65),
@@ -39,17 +39,11 @@ class SectionsContainer extends StatelessWidget {
                 ),
                 CustomGridTile(
                   index: 1,
-                  onTap: () {
-                    context.read<HomeCubitCubit>().getAllHAdithBooks();
-                    Navigator.pushNamed(context, RoutesConstants.hadithView);
-                  },
+                  onTap: () {},
                 ),
                 CustomGridTile(
                   index: 2,
-                  onTap: () {
-                    context.read<HomeCubitCubit>().initAzkarjson();
-                    Navigator.pushNamed(context, RoutesConstants.azkarView);
-                  },
+                  onTap: () {},
                 ),
               ],
             ),
@@ -58,10 +52,7 @@ class SectionsContainer extends StatelessWidget {
               children: [
                 CustomGridTile(
                   index: 3,
-                  onTap: () {
-                    context.read<HomeCubitCubit>().handleRadio();
-                    Navigator.pushNamed(context, RoutesConstants.radioView);
-                  },
+                  onTap: () {},
                 ),
                 CustomGridTile(
                   index: 4,
@@ -70,10 +61,7 @@ class SectionsContainer extends StatelessWidget {
                 ),
                 CustomGridTile(
                   index: 5,
-                  onTap: () {
-                    context.read<HomeCubitCubit>().getAllPreyTime();
-                    Navigator.pushNamed(context, RoutesConstants.preyTimesView);
-                  },
+                  onTap: () {},
                 ),
               ],
             ),
@@ -82,23 +70,15 @@ class SectionsContainer extends StatelessWidget {
               children: [
                 CustomGridTile(
                   index: 6,
-                  onTap: () {
-                    context.read<HomeCubitCubit>().getAsmaaAllah();
-
-                    Navigator.pushNamed(
-                        context, RoutesConstants.asmaaAllahView);
-                  },
+                  onTap: () {},
                 ),
                 CustomGridTile(
                   index: 7,
-                  onTap: () =>
-                      Navigator.pushNamed(context, RoutesConstants.sebhaView),
+                  onTap: () {},
                 ),
                 CustomGridTile(
                   index: 8,
-                  onTap: () {
-                    Navigator.pushNamed(context, RoutesConstants.preyTimesView);
-                  },
+                  onTap: () {},
                 ),
               ],
             ),

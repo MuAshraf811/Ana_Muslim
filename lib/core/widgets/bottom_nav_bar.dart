@@ -31,7 +31,7 @@ class CustomNavBAr extends StatelessWidget {
                   margin: EdgeInsets.only(top: 6.h),
                   decoration: BoxDecoration(
                       color: context.read<NavBArCubit>().state == 0
-                          ? AppColors.primaryBlue.withOpacity(0.3)
+                          ? AppColors.primary.withOpacity(0.2)
                           : null,
                       borderRadius: BorderRadius.circular(6.r)),
                   child: Row(
@@ -40,7 +40,7 @@ class CustomNavBAr extends StatelessWidget {
                         Icons.home_filled,
                         size: 25,
                         color: context.read<NavBArCubit>().state == 0
-                            ? AppColors.primaryBlue
+                            ? AppColors.primary
                             : AppColors.blackText,
                       ),
                       const HorizontalSpacer(width: 6),
@@ -49,7 +49,7 @@ class CustomNavBAr extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 15,
                           color: context.read<NavBArCubit>().state == 0
-                              ? AppColors.primaryBlue
+                              ? AppColors.primary
                               : AppColors.blackText,
                         ),
                       )
@@ -65,7 +65,7 @@ class CustomNavBAr extends StatelessWidget {
                   margin: EdgeInsets.only(top: 6.h),
                   decoration: BoxDecoration(
                       color: context.read<NavBArCubit>().state == 1
-                          ? AppColors.primaryBlue.withOpacity(0.3)
+                          ? AppColors.primary.withOpacity(0.3)
                           : null,
                       borderRadius: BorderRadius.circular(6.r)),
                   child: Row(
@@ -73,7 +73,7 @@ class CustomNavBAr extends StatelessWidget {
                       SvgHandler(
                           imagePath: 'assets/svgs/kaaba-solid-svgrepo-com.svg',
                           color: context.read<NavBArCubit>().state == 1
-                              ? AppColors.primaryBlue
+                              ? AppColors.primary
                               : AppColors.blackText,
                           height: 18,
                           width: 18),
@@ -83,7 +83,7 @@ class CustomNavBAr extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 15,
                           color: context.read<NavBArCubit>().state == 1
-                              ? AppColors.primaryBlue
+                              ? AppColors.primary
                               : AppColors.blackText,
                         ),
                       )
@@ -99,7 +99,7 @@ class CustomNavBAr extends StatelessWidget {
                   margin: EdgeInsets.only(top: 6.h),
                   decoration: BoxDecoration(
                       color: context.read<NavBArCubit>().state == 2
-                          ? AppColors.primaryBlue.withOpacity(0.3)
+                          ? AppColors.primary.withOpacity(0.3)
                           : null,
                       borderRadius: BorderRadius.circular(6.r)),
                   child: Row(
@@ -108,7 +108,7 @@ class CustomNavBAr extends StatelessWidget {
                           imagePath: 'assets/svgs/profile-nav.svg',
                           height: 18,
                           color: context.read<NavBArCubit>().state == 2
-                              ? AppColors.primaryBlue
+                              ? AppColors.primary
                               : AppColors.blackText,
                           width: 18),
                       const HorizontalSpacer(width: 6),
@@ -117,7 +117,7 @@ class CustomNavBAr extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 15,
                           color: context.read<NavBArCubit>().state == 2
-                              ? AppColors.primaryBlue
+                              ? AppColors.primary
                               : AppColors.blackText,
                         ),
                       )

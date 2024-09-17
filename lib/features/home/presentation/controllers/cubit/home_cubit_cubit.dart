@@ -7,7 +7,9 @@ import 'package:ana_muslim/features/home/data/hadith.dart';
 import 'package:ana_muslim/features/home/data/radio.dart';
 import 'package:ana_muslim/features/home/models/asmaa_allah_model.dart';
 import 'package:ana_muslim/features/home/models/azkar_model.dart';
+import 'package:ana_muslim/features/home/models/doaa_model.dart';
 import 'package:ana_muslim/features/home/models/hadith_books_model.dart';
+import 'package:ana_muslim/features/home/models/nawawy_model.dart';
 import 'package:ana_muslim/features/home/models/prey_times_model2.dart';
 import 'package:ana_muslim/features/home/models/radio_model.dart';
 import 'package:ana_muslim/features/home/models/salah_model.dart';
@@ -25,6 +27,11 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
   late List<SurahModel> allSurahs;
   late List<AzkarModel> azkrMOdel;
   List<InnerAzkar>? someZekr;
+  String? someZekrCategoryName;
+
+  DoaaModel? somedoaa;
+  AsmaaAllahModel? someName;
+
   late List<PreyTimesModelTwo> allPreyTimes;
   late PreyTimesModelTwo preyTimeAtSomeDay;
   late List<HadithModel> hadith;
@@ -32,6 +39,9 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
   late String randomZekeText;
   late List<HadithBooksModel> hadithBooks;
   late List<AsmaaAllahModel> asmaaAllah;
+  late List<DoaaModel> doaa;
+  late List<NawawyModel> nawawy;
+
   List<SalahModel> salahZekr = [];
   int from = 1;
   int to = 15;
@@ -39,6 +49,84 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
   bool isListCollapsedInPreyZekr = true;
   HomeCubitCubit() : super(HomeCubitInitial());
   final ScrollController scrollController = ScrollController();
+
+  generateCustomAllahName() async {
+    try {
+      emit(RandomAsmState());
+      if (someName != null) {}
+      final res = await rootBundle.loadString("assets/jsons/asmaa_allah.json");
+      final List<dynamic> response = jsonDecode(res);
+      final random = Random().nextInt(response.length - 1);
+      final Map<String, dynamic> spacificList = response[random];
+      someName = AsmaaAllahModel.fromJson(spacificList);
+
+      emit(RandomAsmSuccessState());
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+      emit(RandomAsmErrorState(error: e.toString()));
+    }
+  }
+
+  generateCustomDoaa() async {
+    try {
+      emit(RandomDoaaState());
+      if (somedoaa != null) {}
+      final res = await rootBundle.loadString("assets/jsons/doaa.json");
+      final List<dynamic> response = jsonDecode(res);
+      final random = Random().nextInt(response.length - 1);
+      final Map<String, dynamic> spacificList = response[random];
+      somedoaa = DoaaModel.fromJson(spacificList);
+
+      emit(RandomDoaaSuccessState());
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+      emit(RandomDoaaErrorState(error: e.toString()));
+    }
+  }
+
+  void getNaway() async {
+    try {
+      emit(NawawyLoadingState());
+
+      final data = await rootBundle.loadString("assets/jsons/hadith_40.json");
+
+      final List<dynamic> res = jsonDecode(data);
+
+      nawawy = res
+          .map(
+            (e) => NawawyModel.fromJson(e),
+          )
+          .toList();
+
+      emit(NawawyLoadedState());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  void getDoaa() async {
+    try {
+      emit(DoaaLoadingState());
+
+      final data = await rootBundle.loadString("assets/jsons/doaa.json");
+
+      final List<dynamic> res = jsonDecode(data);
+
+      doaa = res
+          .map(
+            (e) => DoaaModel.fromJson(e),
+          )
+          .toList();
+
+      emit(DoaaLoadedState());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
   void getAsmaaAllah() async {
     try {
@@ -115,7 +203,7 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
     );
   }
 
-  generateCustomZekr() async {
+  void generateCustomZekr() async {
     emit(RandomZekrState());
     try {
       emit(RandomZekrState());
@@ -125,6 +213,7 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
       final res = await rootBundle.loadString("assets/jsons/adhkar.json");
       final List<dynamic> response = jsonDecode(res);
       final random = Random().nextInt(response.length - 1);
+      someZekrCategoryName = response[random]["category"];
       final List<dynamic> spacificList = response[random]['array'];
       someZekr = spacificList
           .map(

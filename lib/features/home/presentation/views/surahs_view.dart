@@ -45,7 +45,7 @@ class SurahsView extends StatelessWidget {
                           endIndent: 8.w,
                           indent: 8.w,
                           height: 18.h,
-                          color: AppColors.primaryBlueDarker,
+                          color: AppColors.secondry,
                         ),
                         itemBuilder: (context, index) => InkWell(
                           onTap: () {
@@ -61,8 +61,7 @@ class SurahsView extends StatelessWidget {
                           },
                           borderRadius: BorderRadius.circular(8.r),
                           highlightColor: AppColors.white,
-                          hoverColor:
-                              AppColors.homeScaffoldContainer.withOpacity(0.2),
+                          hoverColor: AppColors.primary.withOpacity(0.2),
                           child: SurahItem(index: index),
                         ),
                       ),

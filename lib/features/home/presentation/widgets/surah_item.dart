@@ -50,7 +50,7 @@ class SurahItem extends StatelessWidget {
           height: 28.h,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.offRed),
+            border: Border.all(color: AppColors.primary),
             borderRadius: BorderRadius.circular(6.r),
           ),
           child: Text(

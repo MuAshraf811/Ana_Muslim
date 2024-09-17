@@ -11,4 +11,6 @@ class RoutesConstants {
   static const profileInfoView = '/';
   static const sallehZekrView = '/SallehZekrView';
   static const asmaaAllahView = '/AsmaaAllah';
+  static const doaaView = '/Doaaview';
+  static const nawawyView = "/NawawyView";
 }

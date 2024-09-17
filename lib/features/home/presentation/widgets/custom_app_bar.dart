@@ -35,7 +35,7 @@ class CustomAppBar extends StatelessWidget {
               fill: 0,
               weight: 0.2,
               size: 20,
-              color: AppColors.primaryBlueDarker,
+              color: AppColors.primary,
             ),
           ),
         ),
@@ -48,6 +48,7 @@ class CustomAppBar extends StatelessWidget {
             borderRaduis: 14,
             prefixIcon: const SvgHandler(
               imagePath: 'assets/svgs/Search.svg',
+              color: AppColors.secondry,
               height: 20,
               width: 20,
             ),

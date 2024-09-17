@@ -33,7 +33,21 @@ class _QuranViewState extends State<QuranView> {
         child: Column(
           children: [
             const VerticalSpacer(height: 16),
-            const QuranAppBar(),
+            Padding(
+              padding: EdgeInsets.only(left: 10.w, top: 10.h),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      size: 18.w,
+                      color: AppColors.secondry,
+                    )),
+              ),
+            ),
             const VerticalSpacer(height: 18),
             Expanded(
               child: PageView.builder(

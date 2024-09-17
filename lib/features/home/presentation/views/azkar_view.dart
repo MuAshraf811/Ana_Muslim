@@ -53,9 +53,9 @@ class AzkarView extends StatelessWidget {
                           padding: EdgeInsets.symmetric(
                               horizontal: 16.w, vertical: 12.h),
                           margin: EdgeInsets.only(
-                              left: 26.w, right: 18.w, bottom: 14.h),
+                              left: 26.w, right: 18.w, bottom: 8.h),
                           decoration: BoxDecoration(
-                            color: AppColors.primaryBlueDarker.withOpacity(0.7),
+                            color: AppColors.primary.withOpacity(0.7),
                             borderRadius: BorderRadius.only(
                               topRight: Radius.circular(26.r),
                               bottomRight: Radius.circular(26.r),

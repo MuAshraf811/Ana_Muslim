@@ -15,19 +15,10 @@ class PrayerTimesContainer extends StatelessWidget {
       //width: 315.w,
       //height: 146.h,
       padding: EdgeInsets.only(right: 32.w, left: 18.w, top: 8.h),
-      margin: EdgeInsets.only(bottom: 16.h),
+      margin: EdgeInsets.only(bottom: 10.h),
       decoration: BoxDecoration(
-        color: AppColors.offRed.withOpacity(0.75),
+        color: AppColors.primary.withOpacity(0.9),
         borderRadius: BorderRadius.circular(12.r),
-        gradient: RadialGradient(
-          center: Alignment.topRight,
-          radius: 0.4.w,
-          colors: [
-            AppColors.primary,
-            AppColors.homeScaffoldContainer,
-            AppColors.offRed.withOpacity(0.75)
-          ],
-        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -106,6 +97,7 @@ class PrayerTimesContainer extends StatelessWidget {
               height: 120.h,
               child: Image.asset(
                 'assets/images/jama-masjid 1.png',
+                color: AppColors.white.withOpacity(0.6),
               ),
             ),
           ),

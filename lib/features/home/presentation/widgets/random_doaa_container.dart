@@ -8,8 +8,8 @@ import '../../../../core/widgets/spacers.dart';
 import '../../../../core/widgets/svg_handler.dart';
 import '../controllers/cubit/home_cubit_cubit.dart';
 
-class RandomZekrContainer extends StatelessWidget {
-  const RandomZekrContainer({
+class RandomDoaaContainer extends StatelessWidget {
+  const RandomDoaaContainer({
     super.key,
   });
 
@@ -21,7 +21,7 @@ class RandomZekrContainer extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 26.w, vertical: 14.h),
       decoration: BoxDecoration(
         color: AppColors.white,
-        border: Border.all(color: AppColors.primary),
+        border: Border.all(color: AppColors.secondry),
         borderRadius: BorderRadius.circular(10.r),
       ),
       child: Column(
@@ -63,7 +63,7 @@ class RandomZekrContainer extends StatelessWidget {
               ),
               const Spacer(),
               const Text(
-                ' من الأذكار المنسية',
+                ' دعاء اليوم',
                 style: TextStyle(
                   fontSize: 16,
                   color: AppColors.black,
@@ -74,44 +74,25 @@ class RandomZekrContainer extends StatelessWidget {
           ),
           const VerticalSpacer(height: 12),
           Divider(
-            color: AppColors.primary,
+            color: AppColors.secondry,
             endIndent: 16.w,
             indent: 16.w,
           ),
-          const VerticalSpacer(height: 6),
+          const VerticalSpacer(height: 12),
           BlocBuilder<HomeCubitCubit, HomeCubitState>(
             buildWhen: (previous, current) =>
-                current is RandomZekrState ||
-                current is RandomZekrSuccessState ||
-                current is RandomZekrErrorState,
+                current is RandomDoaaErrorState ||
+                current is RandomDoaaState ||
+                current is RandomDoaaSuccessState,
             builder: (context, state) {
-              if (state is RandomZekrSuccessState) {
-                return IntrinsicHeight(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        context.read<HomeCubitCubit>().someZekrCategoryName!,
-                        textDirection: TextDirection.rtl,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: AppColors.secondry,
-                          letterSpacing: 1.5,
-                        ),
-                      ),
-                      const VerticalSpacer(height: 8),
-                      Text(
-                        context.read<HomeCubitCubit>().randomZekeText,
-                        textDirection: TextDirection.rtl,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: AppColors.black,
-                          letterSpacing: 1.5,
-                        ),
-                      ),
-                    ],
+              if (state is RandomDoaaSuccessState) {
+                return Text(
+                  context.read<HomeCubitCubit>().somedoaa!.text,
+                  textDirection: TextDirection.rtl,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: AppColors.black,
+                    letterSpacing: 1.5,
                   ),
                 );
               }

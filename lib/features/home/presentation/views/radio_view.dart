@@ -49,7 +49,7 @@ class RadioView extends StatelessWidget {
                             margin: EdgeInsets.only(bottom: 10.h),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8.r),
-                              border: Border.all(color: AppColors.primaryBlue),
+                              border: Border.all(color: AppColors.primary),
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
