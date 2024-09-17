@@ -16,7 +16,6 @@ import 'package:ana_muslim/features/setting/presentation/profile_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-
 import '../constants/app_route_path.dart';
 
 class AppRouter {
