@@ -2,6 +2,7 @@
 
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
+import 'package:ana_muslim/core/widgets/svg_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,50 +15,31 @@ class QiblahView extends StatelessWidget {
     final width = MediaQuery.sizeOf(context).height;
 
     return Column(
-      //mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const VerticalSpacer(height: 24),
-        Container(
-          width: width / 3,
-          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              border: Border.all(color: AppColors.primaryBlueDarker)),
-          child: const Text(
-            ' فَوَلِّ وَجْهَكَ شَطْرَ الْمَسْجِدِ الْحَرَامِ',
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-          ),
-        ),
-        const VerticalSpacer(height: 32),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text(
-              'فاقوس الشرقية',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-            ),
-            Text(
-              ' محل إقامتك ',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-          ],
-        ),
-        const VerticalSpacer(height: 32),
-        Stack(
-          children: [
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 16.w),
-              height: height / 2,
-            ),
-            Positioned(
-              left: width / 4,
-              top: height / 4,
-              child: CustomPaint(
-                painter: CompassPainter(),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              SvgHandler(
+                imagePath: 'assets/svgs/compass.svg',
+                height: height / 2.2,
+                width: width / 1.2,
+                color: AppColors.primary,
               ),
-            ),
-          ],
+              Transform.translate(
+                offset: Offset(3.w, 0),
+                child: SvgHandler(
+                  imagePath: 'assets/svgs/needle.svg',
+                  height: height / 3.4,
+                  width: width / 1.2,
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );

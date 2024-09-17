@@ -36,133 +36,128 @@ class SebhaView extends StatelessWidget {
                 ),
               ),
               const VerticalSpacer(height: 12),
-              Expanded(
-                child: Consumer<SebhaProvider>(
-                  builder: (context, value, child) => ListView(
-                    children: [
-                      SebhaItem(
-                        zekr: 'أستغفر الله ',
-                        count: value.countEsghfar,
-                        onRebeat: () {
-                          Provider.of<SebhaProvider>(context, listen: false)
-                              .estghfer();
-                        },
-                        onReset: () =>
-                            Provider.of<SebhaProvider>(context, listen: false)
-                                .resetEstgher(),
-                      ),
-                      Image.asset(
-                        'assets/images/Frame 48.png',
-                        color: AppColors.primary,
-                      ),
-                      SebhaItem(
-                        zekr: 'الله أكبر ',
-                        count: value.countTakber,
-                        onRebeat: () {
-                          Provider.of<SebhaProvider>(context, listen: false)
-                              .kber();
-                        },
-                        onReset: () =>
-                            Provider.of<SebhaProvider>(context, listen: false)
-                                .resetKeber(),
-                      ),
-                      Image.asset(
-                        'assets/images/Frame 48.png',
-                        color: AppColors.primary,
-                      ),
-                      SebhaItem(
-                        zekr: 'الحمدلله ',
-                        count: value.countHamed,
-                        onRebeat: () {
-                          Provider.of<SebhaProvider>(context, listen: false)
-                              .hamed();
-                        },
-                        onReset: () =>
-                            Provider.of<SebhaProvider>(context, listen: false)
-                                .resetHamed(),
-                      ),
-                      Image.asset(
-                        'assets/images/Frame 48.png',
-                        color: AppColors.primary,
-                      ),
-                      SebhaItem(
-                        zekr: ' سبحان الله ',
-                        count: value.countTasbeh,
-                        onRebeat: () {
-                          Provider.of<SebhaProvider>(context, listen: false)
-                              .sebeh();
-                        },
-                        onReset: () =>
-                            Provider.of<SebhaProvider>(context, listen: false)
-                                .resetSbeh(),
-                      ),
-                      Image.asset(
-                        'assets/images/Frame 48.png',
-                        color: AppColors.primary,
-                      ),
-                      SebhaItem(
-                        zekr: ' لا حول ولا قوة إلا بالله',
-                        count: value.countHowkala,
-                        onRebeat: () {
-                          Provider.of<SebhaProvider>(context, listen: false)
-                              .hawkel();
-                        },
-                        onReset: () =>
-                            Provider.of<SebhaProvider>(context, listen: false)
-                                .resetHawkel(),
-                      ),
-                      Image.asset(
-                        'assets/images/Frame 48.png',
-                        color: AppColors.primary,
-                      ),
-                      SebhaItem(
-                        zekr: ' لا إله إلا الله ',
-                        count: value.countHowkala,
-                        onRebeat: () {
-                          Provider.of<SebhaProvider>(context, listen: false)
-                              .hawkel();
-                        },
-                        onReset: () =>
-                            Provider.of<SebhaProvider>(context, listen: false)
-                                .resetHawkel(),
-                      ),
-                      Image.asset(
-                        'assets/images/Frame 48.png',
-                        color: AppColors.primary,
-                      ),
-                      SebhaItem(
-                        zekr: ' سبحان الله وبحمده \nسبحان الله العظيم',
-                        count: value.countTesbehKamel,
-                        onRebeat: () {
-                          Provider.of<SebhaProvider>(context, listen: false)
-                              .sebeh2();
-                        },
-                        onReset: () =>
-                            Provider.of<SebhaProvider>(context, listen: false)
-                                .resetsebeh2(),
-                      ),
-                      Image.asset(
-                        'assets/images/Frame 48.png',
-                        color: AppColors.primary,
-                      ),
-                      SebhaItem(
-                        zekr: 'اللهم صل علي محمد\n وعلي آله وصحبه وسلم',
-                        count: value.countSallah,
-                        onRebeat: () {
-                          Provider.of<SebhaProvider>(context, listen: false)
-                              .sallah();
-                        },
-                        onReset: () =>
-                            Provider.of<SebhaProvider>(context, listen: false)
-                                .resetSallah(),
-                      ),
-                      const VerticalSpacer(height: 16),
-                    ],
-                  ),
-                ),
-              ),
+              const SebhaList(),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class SebhaList extends StatelessWidget {
+  const SebhaList({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Consumer<SebhaProvider>(
+        builder: (context, value, child) => ListView(
+          children: [
+            SebhaItem(
+              zekr: 'أستغفر الله ',
+              count: value.countEsghfar,
+              onRebeat: () {
+                Provider.of<SebhaProvider>(context, listen: false).estghfer();
+              },
+              onReset: () => Provider.of<SebhaProvider>(context, listen: false)
+                  .resetEstgher(),
+            ),
+            Image.asset(
+              'assets/images/Frame 48.png',
+              color: AppColors.secondry,
+            ),
+            SebhaItem(
+              zekr: 'الله أكبر ',
+              count: value.countTakber,
+              onRebeat: () {
+                Provider.of<SebhaProvider>(context, listen: false).kber();
+              },
+              onReset: () => Provider.of<SebhaProvider>(context, listen: false)
+                  .resetKeber(),
+            ),
+            Image.asset(
+              'assets/images/Frame 48.png',
+              color: AppColors.primary,
+            ),
+            SebhaItem(
+              zekr: 'الحمدلله ',
+              count: value.countHamed,
+              onRebeat: () {
+                Provider.of<SebhaProvider>(context, listen: false).hamed();
+              },
+              onReset: () => Provider.of<SebhaProvider>(context, listen: false)
+                  .resetHamed(),
+            ),
+            Image.asset(
+              'assets/images/Frame 48.png',
+              color: AppColors.primary,
+            ),
+            SebhaItem(
+              zekr: ' سبحان الله ',
+              count: value.countTasbeh,
+              onRebeat: () {
+                Provider.of<SebhaProvider>(context, listen: false).sebeh();
+              },
+              onReset: () => Provider.of<SebhaProvider>(context, listen: false)
+                  .resetSbeh(),
+            ),
+            Image.asset(
+              'assets/images/Frame 48.png',
+              color: AppColors.primary,
+            ),
+            SebhaItem(
+              zekr: ' لا حول ولا قوة إلا بالله',
+              count: value.countHowkala,
+              onRebeat: () {
+                Provider.of<SebhaProvider>(context, listen: false).hawkel();
+              },
+              onReset: () => Provider.of<SebhaProvider>(context, listen: false)
+                  .resetHawkel(),
+            ),
+            Image.asset(
+              'assets/images/Frame 48.png',
+              color: AppColors.primary,
+            ),
+            SebhaItem(
+              zekr: ' لا إله إلا الله ',
+              count: value.countHowkala,
+              onRebeat: () {
+                Provider.of<SebhaProvider>(context, listen: false).hawkel();
+              },
+              onReset: () => Provider.of<SebhaProvider>(context, listen: false)
+                  .resetHawkel(),
+            ),
+            Image.asset(
+              'assets/images/Frame 48.png',
+              color: AppColors.primary,
+            ),
+            SebhaItem(
+              zekr: ' سبحان الله وبحمده \nسبحان الله العظيم',
+              count: value.countTesbehKamel,
+              onRebeat: () {
+                Provider.of<SebhaProvider>(context, listen: false).sebeh2();
+              },
+              onReset: () => Provider.of<SebhaProvider>(context, listen: false)
+                  .resetsebeh2(),
+            ),
+            Image.asset(
+              'assets/images/Frame 48.png',
+              color: AppColors.primary,
+            ),
+            SebhaItem(
+              zekr: 'اللهم صل علي محمد\n وعلي آله وصحبه وسلم',
+              count: value.countSallah,
+              onRebeat: () {
+                Provider.of<SebhaProvider>(context, listen: false).sallah();
+              },
+              onReset: () => Provider.of<SebhaProvider>(context, listen: false)
+                  .resetSallah(),
+            ),
+            const VerticalSpacer(height: 16),
+          ],
         ),
       ),
     );
