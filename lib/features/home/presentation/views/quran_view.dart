@@ -3,8 +3,6 @@ import 'package:ana_muslim/core/widgets/spacers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../widgets/quran_view_appbar.dart';
-
 class QuranView extends StatefulWidget {
   const QuranView({super.key, required this.page});
   final int page;

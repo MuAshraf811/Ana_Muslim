@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/constants/sections_constanst.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
@@ -10,14 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/constants/app_route_path.dart';
 import '../controllers/cubit/home_cubit_cubit.dart';
 import '../widgets/prayer_times_part.dart';
 import '../widgets/random_doaa_container.dart';
 
-class DummyView extends StatelessWidget {
-  const DummyView({super.key});
+class HomePageView extends StatelessWidget {
+  const HomePageView({super.key});
 
   @override
   Widget build(BuildContext context) {

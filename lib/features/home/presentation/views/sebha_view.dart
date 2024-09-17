@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../widgets/quran_view_appbar.dart';
-
 class SebhaView extends StatelessWidget {
   const SebhaView({super.key});
 
@@ -22,13 +20,27 @@ class SebhaView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const VerticalSpacer(height: 16),
-              const QuranAppBar(text: 'فَاذْكُرُونِي أَذْكُرْكُمْ'),
-              const VerticalSpacer(height: 28),
+              Padding(
+                padding: EdgeInsets.only(left: 10.w, top: 10.h),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        size: 18.w,
+                        color: AppColors.secondry,
+                      )),
+                ),
+              ),
+              const VerticalSpacer(height: 12),
               Expanded(
                 child: Consumer<SebhaProvider>(
                   builder: (context, value, child) => ListView(
                     children: [
-                      CustomSebhaItem(
+                      SebhaItem(
                         zekr: 'أستغفر الله ',
                         count: value.countEsghfar,
                         onRebeat: () {
@@ -39,7 +51,11 @@ class SebhaView extends StatelessWidget {
                             Provider.of<SebhaProvider>(context, listen: false)
                                 .resetEstgher(),
                       ),
-                      CustomSebhaItem(
+                      Image.asset(
+                        'assets/images/Frame 48.png',
+                        color: AppColors.primary,
+                      ),
+                      SebhaItem(
                         zekr: 'الله أكبر ',
                         count: value.countTakber,
                         onRebeat: () {
@@ -50,7 +66,11 @@ class SebhaView extends StatelessWidget {
                             Provider.of<SebhaProvider>(context, listen: false)
                                 .resetKeber(),
                       ),
-                      CustomSebhaItem(
+                      Image.asset(
+                        'assets/images/Frame 48.png',
+                        color: AppColors.primary,
+                      ),
+                      SebhaItem(
                         zekr: 'الحمدلله ',
                         count: value.countHamed,
                         onRebeat: () {
@@ -61,7 +81,11 @@ class SebhaView extends StatelessWidget {
                             Provider.of<SebhaProvider>(context, listen: false)
                                 .resetHamed(),
                       ),
-                      CustomSebhaItem(
+                      Image.asset(
+                        'assets/images/Frame 48.png',
+                        color: AppColors.primary,
+                      ),
+                      SebhaItem(
                         zekr: ' سبحان الله ',
                         count: value.countTasbeh,
                         onRebeat: () {
@@ -72,7 +96,11 @@ class SebhaView extends StatelessWidget {
                             Provider.of<SebhaProvider>(context, listen: false)
                                 .resetSbeh(),
                       ),
-                      CustomSebhaItem(
+                      Image.asset(
+                        'assets/images/Frame 48.png',
+                        color: AppColors.primary,
+                      ),
+                      SebhaItem(
                         zekr: ' لا حول ولا قوة إلا بالله',
                         count: value.countHowkala,
                         onRebeat: () {
@@ -83,8 +111,27 @@ class SebhaView extends StatelessWidget {
                             Provider.of<SebhaProvider>(context, listen: false)
                                 .resetHawkel(),
                       ),
-                      CustomSebhaItem(
-                        zekr: ' سبحان الله وبحمده سبحان الله العظيم',
+                      Image.asset(
+                        'assets/images/Frame 48.png',
+                        color: AppColors.primary,
+                      ),
+                      SebhaItem(
+                        zekr: ' لا إله إلا الله ',
+                        count: value.countHowkala,
+                        onRebeat: () {
+                          Provider.of<SebhaProvider>(context, listen: false)
+                              .hawkel();
+                        },
+                        onReset: () =>
+                            Provider.of<SebhaProvider>(context, listen: false)
+                                .resetHawkel(),
+                      ),
+                      Image.asset(
+                        'assets/images/Frame 48.png',
+                        color: AppColors.primary,
+                      ),
+                      SebhaItem(
+                        zekr: ' سبحان الله وبحمده \nسبحان الله العظيم',
                         count: value.countTesbehKamel,
                         onRebeat: () {
                           Provider.of<SebhaProvider>(context, listen: false)
@@ -94,8 +141,12 @@ class SebhaView extends StatelessWidget {
                             Provider.of<SebhaProvider>(context, listen: false)
                                 .resetsebeh2(),
                       ),
-                      CustomSebhaItem(
-                        zekr: 'اللهم صل علي محمد وعلي آله وصحبه وسلم',
+                      Image.asset(
+                        'assets/images/Frame 48.png',
+                        color: AppColors.primary,
+                      ),
+                      SebhaItem(
+                        zekr: 'اللهم صل علي محمد\n وعلي آله وصحبه وسلم',
                         count: value.countSallah,
                         onRebeat: () {
                           Provider.of<SebhaProvider>(context, listen: false)
@@ -105,6 +156,7 @@ class SebhaView extends StatelessWidget {
                             Provider.of<SebhaProvider>(context, listen: false)
                                 .resetSallah(),
                       ),
+                      const VerticalSpacer(height: 16),
                     ],
                   ),
                 ),
@@ -117,14 +169,15 @@ class SebhaView extends StatelessWidget {
   }
 }
 
-class CustomSebhaItem extends StatelessWidget {
-  const CustomSebhaItem({
+class SebhaItem extends StatelessWidget {
+  const SebhaItem({
     super.key,
     required this.zekr,
     required this.count,
     required this.onRebeat,
     required this.onReset,
   });
+
   final String zekr;
   final int count;
   final VoidCallback onRebeat;
@@ -132,63 +185,68 @@ class CustomSebhaItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 14.h),
-      padding:
-          EdgeInsets.only(left: 12.w, bottom: 14.h, right: 12.w, top: 10.h),
-      height: 156.h,
-      decoration: BoxDecoration(
-        border: Border.all(color: AppColors.offRed),
-        borderRadius: BorderRadius.circular(8.r),
-      ),
-      child: Column(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 14.h),
+      margin: EdgeInsets.only(bottom: 28.h),
+      child: Row(
         children: [
-          Text(
-            zekr,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-                color: AppColors.blackText,
-                fontSize: 16,
-                fontWeight: FontWeight.w600),
-          ),
-          const VerticalSpacer(height: 12),
-          Container(
-            width: 36.w,
-            height: 36.w,
+          Stack(
             alignment: Alignment.center,
-            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 6.h),
-            decoration: BoxDecoration(
-                border: Border.all(color: AppColors.offRed),
-                shape: BoxShape.circle),
-            child: Text(
-              count.toString(),
-              style: const TextStyle(fontSize: 16),
-            ),
-          ),
-          const Spacer(),
-          Row(
             children: [
-              Expanded(
-                child: CustomButton(
-                  onTap: onRebeat,
-                  buttonColor: AppColors.white,
-                  textColor: AppColors.offRed,
-                  borderRaduis: 8,
-                  border: Border.all(color: AppColors.offRed),
-                  width: double.infinity,
-                  height: 32,
-                  text: "تكرار",
+              Image.asset(
+                "assets/images/sbha_shape.png",
+                height: 100.h,
+                width: 86.w,
+                color: AppColors.primary,
+              ),
+              Text(
+                count.toString(),
+                style: const TextStyle(
+                  color: AppColors.secondry,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              const HorizontalSpacer(width: 12),
-              CustomButton(
-                onTap: onReset,
-                buttonColor: AppColors.white,
-                textColor: AppColors.offRed,
-                borderRaduis: 8,
-                border: Border.all(color: AppColors.offRed),
-                width: 80,
-                height: 32,
-                text: "البدأ",
+            ],
+          ),
+          const HorizontalSpacer(width: 16),
+          Column(
+            children: [
+              Text(
+                zekr,
+                style: const TextStyle(
+                  color: AppColors.secondry,
+                  fontSize: 18,
+                ),
+              ),
+              const VerticalSpacer(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomButton(
+                    onTap: onReset,
+                    buttonColor: AppColors.primary,
+                    textColor: AppColors.white,
+                    fontSize: 12,
+                    borderRaduis: 4,
+                    border: Border.all(color: AppColors.white.withOpacity(0.3)),
+                    width: 52,
+                    height: 32,
+                    text: "صفر",
+                  ),
+                  const HorizontalSpacer(width: 9),
+                  CustomButton(
+                    onTap: onRebeat,
+                    fontSize: 14,
+                    buttonColor: AppColors.primary,
+                    textColor: AppColors.white,
+                    borderRaduis: 4,
+                    border: Border.all(color: AppColors.white.withOpacity(0.3)),
+                    width: 128,
+                    height: 32,
+                    text: "تكرار",
+                  ),
+                ],
               ),
             ],
           ),
