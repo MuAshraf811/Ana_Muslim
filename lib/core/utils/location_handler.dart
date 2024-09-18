@@ -1,8 +1,14 @@
+import 'dart:async';
+
 import 'package:ana_muslim/core/utils/location_model.dart';
 import 'package:location/location.dart';
 
 class LocationHandler {
   LocationHandler._();
+
+  static final StreamController<LocationModel> _locationStream =
+      StreamController<LocationModel>();
+  static Stream<LocationModel> get locationStream => _locationStream.stream;
 
   static Location? _location;
   static Location _initLocationService() {
@@ -15,23 +21,42 @@ class LocationHandler {
 
   static Future<LocationModel> getuserCurrentLocation() async {
     final location = _initLocationService();
-    await _manageLocationPermission();
     final data = await location.getLocation();
     return LocationModel(
-      latitude: data.latitude ?? 30.4248,
-      longitude: data.longitude ?? 31.486,
+      latitude: data.latitude!,
+      longitude: data.longitude!,
     );
   }
 
-  static _manageLocationPermission() async {
-    if (await _location!.serviceEnabled()) {
-      await _location!.requestService();
-    } else {
-      final state = await _location!.requestPermission();
-      if (state != PermissionStatus.granted ||
-          state != PermissionStatus.grantedLimited) {
-        await _location!.requestPermission();
+  static manageLocationPermission() async {
+    final location = _initLocationService();
+    bool serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
+        // Handle service not enabled
+        return;
       }
+    }
+    final state = await location.requestPermission();
+    if (state == PermissionStatus.granted ||
+        state == PermissionStatus.grantedLimited) {
+      final currentLocation = await getuserCurrentLocation();
+      _locationStream.add(currentLocation);
+      location.onLocationChanged.listen(
+        (locationData) {
+          if (locationData != null) {
+            _locationStream.add(
+              LocationModel(
+                latitude: locationData.latitude!,
+                longitude: locationData.longitude!,
+              ),
+            );
+          }
+        },
+      );
+    } else {
+      location.requestPermission();
     }
   }
 }

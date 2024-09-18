@@ -23,7 +23,8 @@ class AnaMuslim extends StatelessWidget {
             create: (context) => HomeCubitCubit()
               ..generateCustomZekr()
               ..generateCustomDoaa()
-              ..generateCustomAllahName(),
+              ..generateCustomAllahName()
+              ..getUserlocation(),
           ),
         ],
         child: MaterialApp(

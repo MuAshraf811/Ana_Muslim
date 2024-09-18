@@ -126,3 +126,7 @@ final class RandomAsmErrorState extends HomeCubitState {
 
   RandomAsmErrorState({required this.error});
 }
+
+final class LocationLoading extends HomeCubitState {}
+
+final class LocationLoaded extends HomeCubitState {}
