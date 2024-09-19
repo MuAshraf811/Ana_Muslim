@@ -1,8 +1,8 @@
-class LocationModel {
+class LocationModel2 {
   final double latitude;
   final double longitude;
 
-  LocationModel({
+  LocationModel2({
     required this.latitude,
     required this.longitude,
   });

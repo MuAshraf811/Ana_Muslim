@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/utils/functions.dart';
-import 'package:ana_muslim/core/utils/location_handler.dart';
 import 'package:ana_muslim/core/widgets/snack_bar.dart';
 import 'package:ana_muslim/features/home/data/hadith.dart';
 import 'package:ana_muslim/features/home/data/radio.dart';

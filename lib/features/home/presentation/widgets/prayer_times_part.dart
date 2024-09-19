@@ -91,15 +91,10 @@ class PrayerTimesContainer extends StatelessWidget {
               const VerticalSpacer(height: 12),
             ],
           ),
-          Transform.translate(
-            offset: Offset(24.w, 3.h),
-            child: SizedBox(
-              height: 120.h,
-              child: Image.asset(
-                'assets/images/jama-masjid 1.png',
-                color: AppColors.white.withOpacity(0.6),
-              ),
-            ),
+          Image.asset(
+            'assets/images/jama-masjid 1.png',
+            width: 128.w,
+            color: AppColors.white.withOpacity(0.6),
           ),
         ],
       ),

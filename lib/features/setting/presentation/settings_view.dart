@@ -1,3 +1,8 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
+import 'package:ana_muslim/core/constants/app_colors.dart';
+import 'package:ana_muslim/core/widgets/spacers.dart';
+import 'package:ana_muslim/core/widgets/svg_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -8,10 +13,338 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 12.h),
-          child: const Center(
-            child: Text('data'),
+          padding: EdgeInsets.symmetric(horizontal: 18.w),
+          child: ListView(
+            children: [
+              const VerticalSpacer(height: 22),
+              ProfileInfoContainer(),
+              const VerticalSpacer(height: 12),
+              SystemSettingContainer(),
+              const VerticalSpacer(height: 12),
+              const FontSizeSlider(),
+              const AboutApplicationContainer(),
+              const VerticalSpacer(height: 16),
+            ],
           )),
+    );
+  }
+}
+
+class SystemSettingContainer extends StatelessWidget {
+  const SystemSettingContainer({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.r),
+        border: Border.all(color: AppColors.primary),
+      ),
+      child: Column(
+        children: [
+          const SwitchWithText(text: "الوضع الليلي"),
+          const VerticalSpacer(height: 16),
+          const SwitchWithText(text: "تفعيل الإشعارات"),
+          const VerticalSpacer(height: 16),
+          const LanguageDropDown(),
+        ],
+      ),
+    );
+  }
+}
+
+class ProfileInfoContainer extends StatelessWidget {
+  const ProfileInfoContainer({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.r),
+        border: Border.all(color: AppColors.primary),
+      ),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 32.w,
+            backgroundColor: AppColors.primary,
+          ),
+          const HorizontalSpacer(width: 16),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Muhammed Ashraf",
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              const VerticalSpacer(height: 10),
+              Row(
+                children: [
+                  SvgHandler(
+                      imagePath: 'assets/svgs/location2.svg',
+                      height: 18,
+                      width: 18),
+                  const HorizontalSpacer(width: 10),
+                  Text("Cairo , Egypt")
+                ],
+              ),
+            ],
+          ),
+          const Spacer(),
+          InkWell(
+            onTap: () {},
+            child: const SvgHandler(
+              imagePath: 'assets/svgs/Frame.svg',
+              height: 22,
+              width: 22,
+              color: AppColors.greyText,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class AboutApplicationContainer extends StatelessWidget {
+  const AboutApplicationContainer({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
+      margin: EdgeInsets.only(top: 14.h, bottom: 14.h),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.r),
+        border: Border.all(color: AppColors.primary),
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SettingGridItem(
+                path: "",
+                text: "قيم \nالتطبيق",
+              ),
+              SettingGridItem(
+                path: "",
+                text: "انشر\n التطبيق",
+              ),
+              SettingGridItem(
+                path: "",
+                text: "تابعنا \n",
+              ),
+              SettingGridItem(
+                path: "",
+                text: "تواصل مع \nالمطور",
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class SettingGridItem extends StatelessWidget {
+  const SettingGridItem({
+    super.key,
+    required this.path,
+    required this.text,
+  });
+  final String path;
+  final String text;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {},
+      child: Column(
+        children: [
+          CircleAvatar(
+            backgroundColor: AppColors.secondry,
+            radius: 24.w,
+          ),
+          const VerticalSpacer(height: 4),
+          Text(
+            text,
+            textDirection: TextDirection.rtl,
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LanguageDropDown extends StatelessWidget {
+  const LanguageDropDown({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 13.w),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          DropdownMenu(
+            initialSelection: 0,
+            inputDecorationTheme: InputDecorationTheme(
+                iconColor: AppColors.secondry,
+                focusColor: AppColors.primary,
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.primary)),
+                disabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.primary)),
+                border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                  color: AppColors.primary,
+                ))),
+            menuStyle: MenuStyle(
+                backgroundColor: WidgetStatePropertyAll(AppColors.white),
+                shadowColor: WidgetStatePropertyAll(
+                  AppColors.primary.withOpacity(0.5),
+                ),
+                padding: WidgetStatePropertyAll(EdgeInsets.only(
+                  top: 10.h,
+                )),
+                shape: WidgetStatePropertyAll(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.r),
+                      side: BorderSide(
+                        color: AppColors.secondry,
+                        style: BorderStyle.none,
+                      )),
+                )),
+            dropdownMenuEntries: [
+              DropdownMenuEntry<int>(value: 0, label: "arabic"),
+              DropdownMenuEntry<int>(value: 1, label: "english"),
+              DropdownMenuEntry<int>(value: 2, label: "french")
+            ],
+          ),
+          Text(
+            "اللغة",
+            style: const TextStyle(
+              fontSize: 17,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class FontSizeSlider extends StatefulWidget {
+  const FontSizeSlider({
+    super.key,
+  });
+
+  @override
+  State<FontSizeSlider> createState() => _FontSizeSliderState();
+}
+
+class _FontSizeSliderState extends State<FontSizeSlider> {
+  double cuurent = 16;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.r),
+        border: Border.all(color: AppColors.primary),
+      ),
+      child: Column(
+        children: [
+          Text(
+            'حجم النص    :     ${cuurent.toInt()}',
+            style: TextStyle(
+              color: AppColors.black,
+              fontSize: 16,
+            ),
+          ),
+          const VerticalSpacer(height: 12),
+          Slider.adaptive(
+            value: cuurent,
+            onChanged: (val) {
+              setState(() {
+                cuurent = val;
+              });
+            },
+            min: 12,
+            max: 30,
+            divisions: 9,
+            thumbColor: AppColors.primary,
+            activeColor: AppColors.secondry,
+            inactiveColor: AppColors.primary.withOpacity(0.25),
+            label: "حجم الخط",
+          ),
+          const VerticalSpacer(height: 12),
+          Text(
+            'وَسَبِّحْ بِحَمْدِ رَبِّكَ حِينَ تَقُومُ ',
+            textDirection: TextDirection.rtl,
+            style: TextStyle(
+              color: AppColors.black,
+              fontSize: cuurent,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SwitchWithText extends StatefulWidget {
+  const SwitchWithText({
+    super.key,
+    required this.text,
+  });
+  final String text;
+
+  @override
+  State<SwitchWithText> createState() => _SwitchWithTextState();
+}
+
+class _SwitchWithTextState extends State<SwitchWithText> {
+  bool val = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 12.w),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Switch.adaptive(
+            value: val,
+            onChanged: (value) {
+              setState(() {
+                val = value;
+              });
+            },
+            activeColor: AppColors.primary,
+            activeTrackColor: AppColors.secondry.withOpacity(0.25),
+            trackOutlineColor: const WidgetStatePropertyAll(AppColors.primary),
+          ),
+          Text(
+            widget.text,
+            style: const TextStyle(
+              fontSize: 17,
+            ),
+          )
+        ],
+      ),
     );
   }
 }

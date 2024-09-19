@@ -85,7 +85,7 @@ class CustomAppBar extends StatelessWidget {
       ),
       backgroundColor: AppColors.primary,
       floating: true,
-      collapsedHeight: 64.h,
+      collapsedHeight: 50.h,
       expandedHeight: 128.h,
       pinned: true,
       flexibleSpace: FlexibleSpaceBar(

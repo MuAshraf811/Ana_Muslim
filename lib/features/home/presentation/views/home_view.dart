@@ -2,6 +2,7 @@ import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/cubit/nav_b_ar_cubit.dart';
 import 'package:ana_muslim/features/home/presentation/controllers/cubit/home_cubit_cubit.dart';
 import 'package:ana_muslim/features/home/presentation/views/home_page_view.dart';
+import 'package:ana_muslim/features/qiblah/presentation/cubit/qibla_cubit.dart';
 import 'package:ana_muslim/features/qiblah/presentation/qiblah_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +14,10 @@ class HomeView extends StatelessWidget {
 
   static final List<Widget> _views = [
     const HomePageView(),
-    const QiblahView(),
+    BlocProvider<QiblaCubit>(
+      create: (context) => QiblaCubit(),
+      child: const QiblahView(),
+    ),
     BlocProvider<HomeCubitCubit>(
       create: (context) => HomeCubitCubit()..getAllPreyTime(),
       child: const SettingsView(),

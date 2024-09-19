@@ -1,55 +1,56 @@
 import 'dart:async';
 
-import 'package:ana_muslim/core/utils/extensions.dart';
-import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 
 class LocationService {
-  UserLocation? _currentLocation;
+  LocationService._();
 
-  Location location = Location();
+  static final _location = Location();
+  static final StreamController<LocationModel> _controller =
+      StreamController<LocationModel>();
+  static Stream<LocationModel> get locationStream => _controller.stream;
+  static late LocationModel locationMode;
 
-  final StreamController<UserLocation> _locationController =
-      StreamController<UserLocation>();
-
-  Stream<UserLocation> get locationStream => _locationController.stream;
-
-  LocationService() {
-    // Request permission to use location
-
-    location.requestPermission().then((x) {
-      if (x == PermissionStatus.granted) {
-        // If granted listen to the onLocationChanged stream and emit over our controller
-        location.onLocationChanged.listen((locationData) {
-          if (locationData != null) {
-            _locationController.add(UserLocation(
-              latitude: locationData.latitude ?? 21,
-              longitude: locationData.longitude ?? 21,
-            ));
-          }
-        });
+  static handelPermission() async {
+    bool isServiceEnabled = await _location.serviceEnabled();
+    if (!isServiceEnabled) {
+      await _location.requestService();
+    } else {
+      PermissionStatus status = await _location.hasPermission();
+      if (status == PermissionStatus.denied ||
+          status == PermissionStatus.deniedForever) {
+        await _location.requestPermission();
+      } else {
+        final currentLocation = await _location.getLocation();
+        locationMode = LocationModel(
+          longitude: currentLocation.longitude!,
+          latitude: currentLocation.latitude!,
+        );
+        _controller.add(
+          locationMode = LocationModel(
+            longitude: currentLocation.longitude!,
+            latitude: currentLocation.latitude!,
+          ),
+        );
+        _location.onLocationChanged.listen(
+          (event) => _controller.add(
+            locationMode = LocationModel(
+              longitude: event.longitude!,
+              latitude: event.latitude!,
+            ),
+          ),
+        );
       }
-    });
-  }
-
-  Future<UserLocation?> getLocation() async {
-    try {
-      var userLocation = await location.getLocation();
-      _currentLocation = UserLocation(
-        latitude: userLocation.latitude ?? 21,
-        longitude: userLocation.longitude ?? 21,
-      );
-    } on Exception catch (e) {
-      debugPrint('Could not get location: ${e.toString()}');
     }
-
-    return _currentLocation!;
   }
 }
 
-class UserLocation {
-  final double latitude;
+class LocationModel {
   final double longitude;
+  final double latitude;
 
-  UserLocation({required this.latitude, required this.longitude});
+  LocationModel({
+    required this.longitude,
+    required this.latitude,
+  });
 }

@@ -6,9 +6,9 @@ import 'package:location/location.dart';
 class LocationHandler {
   LocationHandler._();
 
-  static final StreamController<LocationModel> _locationStream =
-      StreamController<LocationModel>();
-  static Stream<LocationModel> get locationStream => _locationStream.stream;
+  static final StreamController<LocationModel2> _locationStream =
+      StreamController<LocationModel2>();
+  static Stream<LocationModel2> get locationStream => _locationStream.stream;
 
   static Location? _location;
   static Location _initLocationService() {
@@ -19,10 +19,10 @@ class LocationHandler {
     return _location!;
   }
 
-  static Future<LocationModel> getuserCurrentLocation() async {
+  static Future<LocationModel2> getuserCurrentLocation() async {
     final location = _initLocationService();
     final data = await location.getLocation();
-    return LocationModel(
+    return LocationModel2(
       latitude: data.latitude!,
       longitude: data.longitude!,
     );
@@ -47,7 +47,7 @@ class LocationHandler {
         (locationData) {
           if (locationData != null) {
             _locationStream.add(
-              LocationModel(
+              LocationModel2(
                 latitude: locationData.latitude!,
                 longitude: locationData.longitude!,
               ),

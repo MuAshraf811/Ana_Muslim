@@ -34,6 +34,7 @@ class _ProfileInfoViewState extends State<ProfileInfoView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: ListView(
@@ -45,7 +46,10 @@ class _ProfileInfoViewState extends State<ProfileInfoView> {
               duration: const Duration(seconds: 1),
               child: const Text(
                 'Profile Information',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.secondry),
               ),
             ),
             const VerticalSpacer(height: 28),
@@ -53,9 +57,7 @@ class _ProfileInfoViewState extends State<ProfileInfoView> {
               padding: EdgeInsets.only(left: 16.w),
               child: const Text(
                 'Profile Photo',
-                style: TextStyle(
-                  fontSize: 16,
-                ),
+                style: TextStyle(fontSize: 16, color: AppColors.primary),
               ),
             ),
             const VerticalSpacer(height: 12),
@@ -78,7 +80,7 @@ class _ProfileInfoViewState extends State<ProfileInfoView> {
                     margin: EdgeInsets.only(left: 16.w),
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: Border.all(color: AppColors.offRed)),
+                        border: Border.all(color: AppColors.primary)),
                   ),
                   Positioned(
                     left: 60.w,
@@ -90,13 +92,13 @@ class _ProfileInfoViewState extends State<ProfileInfoView> {
                       decoration: BoxDecoration(
                           color: AppColors.white,
                           shape: BoxShape.circle,
-                          border: Border.all(color: AppColors.offRed)),
+                          border: Border.all(color: AppColors.secondry)),
                       alignment: Alignment.center,
                       child: const SvgHandler(
                         imagePath: 'assets/svgs/Frame.svg',
                         height: 18,
                         width: 18,
-                        color: AppColors.offRed,
+                        color: AppColors.secondry,
                       ),
                     ),
                   ),
@@ -107,16 +109,20 @@ class _ProfileInfoViewState extends State<ProfileInfoView> {
             Divider(
               indent: 24.w,
               endIndent: 24.w,
-              color: AppColors.primaryBlueDarker,
+              color: AppColors.secondry,
             ),
             const VerticalSpacer(height: 12),
             Row(
               children: [
                 Expanded(
                   child: CustomTextFormField(
+                    fillColor: AppColors.white,
                     label: "الاسم الأول",
                     labelStyle: const TextStyle(fontSize: 10),
-                    suffixIcon: const Icon(Icons.person),
+                    suffixIcon: const Icon(
+                      Icons.person,
+                      color: AppColors.secondry,
+                    ),
                     onChanged: (val) {},
                     borderRaduis: 8,
                   ),
@@ -124,10 +130,14 @@ class _ProfileInfoViewState extends State<ProfileInfoView> {
                 const HorizontalSpacer(width: 20),
                 Expanded(
                   child: CustomTextFormField(
+                    fillColor: AppColors.white,
                     label: "الأسم الأخير",
                     labelStyle: const TextStyle(fontSize: 10),
                     borderRaduis: 8,
-                    suffixIcon: const Icon(Icons.person),
+                    suffixIcon: const Icon(
+                      Icons.person,
+                      color: AppColors.secondry,
+                    ),
                     onChanged: (val) {},
                   ),
                 ),
@@ -135,22 +145,34 @@ class _ProfileInfoViewState extends State<ProfileInfoView> {
             ),
             const VerticalSpacer(height: 16),
             CustomTextFormField(
+              fillColor: AppColors.white,
               label: 'تاريخ الميلاد',
-              suffixIcon: const Icon(Icons.calendar_month),
+              suffixIcon: const Icon(
+                Icons.calendar_month,
+                color: AppColors.secondry,
+              ),
               borderRaduis: 8,
               onChanged: (val) {},
             ),
             const VerticalSpacer(height: 16),
             CustomTextFormField(
+              fillColor: AppColors.white,
               label: ' محل الإقامة',
-              suffixIcon: const Icon(Icons.location_on_outlined),
+              suffixIcon: const Icon(
+                Icons.location_on_outlined,
+                color: AppColors.secondry,
+              ),
               borderRaduis: 8,
               onChanged: (val) {},
             ),
             const VerticalSpacer(height: 16),
             CustomTextFormField(
+              fillColor: AppColors.white,
               label: 'نبذة عنك',
-              suffixIcon: const Icon(Icons.info_outline),
+              suffixIcon: const Icon(
+                Icons.info_outline,
+                color: AppColors.secondry,
+              ),
               borderRaduis: 8,
               isBuildCounterWantd: true,
               maxLength: 100,
@@ -178,7 +200,7 @@ class _ProfileInfoViewState extends State<ProfileInfoView> {
                       borderRaduis: 8,
                       height: 36,
                       text: 'تخطي',
-                      buttonColor: AppColors.offRed.withOpacity(0.7),
+                      buttonColor: AppColors.secondry.withOpacity(0.5),
                       textColor: AppColors.white,
                     ),
                     SizedBox(
@@ -190,7 +212,7 @@ class _ProfileInfoViewState extends State<ProfileInfoView> {
                       borderRaduis: 8,
                       height: 36,
                       text: 'تأكيد',
-                      buttonColor: AppColors.primaryBlueDarker,
+                      buttonColor: AppColors.primary,
                       textColor: AppColors.white,
                     ),
                   ],
