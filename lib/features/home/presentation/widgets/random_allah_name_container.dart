@@ -61,11 +61,13 @@ class RandomAllahNameContainer extends StatelessWidget {
                 onTap: () {
                   context.read<HomeCubitCubit>().copyText(context);
                 },
-                child: const SvgHandler(
+                child: SvgHandler(
                   imagePath: 'assets/svgs/order-nav.svg',
                   height: 20,
                   width: 24,
-                  color: AppColors.secondry,
+                  color: context.read<ThemeCubit>().state == 0
+                      ? AppColors.primary
+                      : AppColors.white,
                 ),
               ),
               const Spacer(),

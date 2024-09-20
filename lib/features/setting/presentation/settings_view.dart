@@ -2,6 +2,7 @@
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
 import 'package:ana_muslim/core/widgets/svg_handler.dart';
+import 'package:ana_muslim/features/qiblah/presentation/cubit/cubit/font_cubit.dart';
 import 'package:ana_muslim/features/qiblah/presentation/cubit/cubit/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,17 +16,21 @@ class SettingsView extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 18.w),
-        child: ListView(
-          children: [
-            const VerticalSpacer(height: 22),
-            ProfileInfoContainer(),
-            const VerticalSpacer(height: 12),
-            SystemSettingContainer(),
-            const VerticalSpacer(height: 12),
-            const FontSizeSlider(),
-            const AboutApplicationContainer(),
-            const VerticalSpacer(height: 16),
-          ],
+        child: BlocBuilder<FontCubit, int>(
+          builder: (context, state) {
+            return ListView(
+              children: [
+                const VerticalSpacer(height: 22),
+                ProfileInfoContainer(),
+                const VerticalSpacer(height: 12),
+                SystemSettingContainer(),
+                const VerticalSpacer(height: 12),
+                const FontSizeSlider(),
+                const AboutApplicationContainer(),
+                const VerticalSpacer(height: 16),
+              ],
+            );
+          },
         ),
       ),
     );
@@ -90,7 +95,7 @@ class ProfileInfoContainer extends StatelessWidget {
               Text(
                 "Muhammed Ashraf",
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: context.read<FontCubit>().state.toDouble(),
                 ),
               ),
               const VerticalSpacer(height: 10),
@@ -101,7 +106,11 @@ class ProfileInfoContainer extends StatelessWidget {
                       height: 18,
                       width: 18),
                   const HorizontalSpacer(width: 10),
-                  Text("Cairo , Egypt")
+                  Text(
+                    "Cairo , Egypt",
+                    style: TextStyle(
+                        fontSize: context.read<FontCubit>().state.toDouble()),
+                  )
                 ],
               ),
             ],
@@ -188,6 +197,8 @@ class SettingGridItem extends StatelessWidget {
             text,
             textDirection: TextDirection.rtl,
             textAlign: TextAlign.center,
+            style:
+                TextStyle(fontSize: context.read<FontCubit>().state.toDouble()),
           ),
         ],
       ),
@@ -267,6 +278,7 @@ class _FontSizeSliderState extends State<FontSizeSlider> {
   double cuurent = 16;
   @override
   Widget build(BuildContext context) {
+    cuurent = context.read<FontCubit>().state.toDouble();
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
       decoration: BoxDecoration(
@@ -279,13 +291,14 @@ class _FontSizeSliderState extends State<FontSizeSlider> {
             'حجم النص    :     ${cuurent.toInt()}',
             style: TextStyle(
               color: AppColors.black,
-              fontSize: 16,
+              fontSize: context.read<FontCubit>().state.toDouble(),
             ),
           ),
           const VerticalSpacer(height: 12),
           Slider.adaptive(
             value: cuurent,
             onChanged: (val) {
+              context.read<FontCubit>().emitIneger(val.toInt());
               setState(() {
                 cuurent = val;
               });
@@ -351,8 +364,8 @@ class _SwitchWithTextState extends State<SwitchWithText> {
           ),
           Text(
             widget.text,
-            style: const TextStyle(
-              fontSize: 17,
+            style: TextStyle(
+              fontSize: context.read<FontCubit>().state.toDouble(),
             ),
           )
         ],
