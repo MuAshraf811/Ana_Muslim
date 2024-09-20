@@ -6,6 +6,7 @@ import 'package:shimmer/shimmer.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/spacers.dart';
 import '../../../../core/widgets/svg_handler.dart';
+import '../../../qiblah/presentation/cubit/cubit/theme_cubit.dart';
 import '../controllers/cubit/home_cubit_cubit.dart';
 
 class RandomDoaaContainer extends StatelessWidget {
@@ -20,8 +21,14 @@ class RandomDoaaContainer extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 6.w),
       padding: EdgeInsets.symmetric(horizontal: 26.w, vertical: 14.h),
       decoration: BoxDecoration(
-        color: AppColors.white,
-        border: Border.all(color: AppColors.secondry),
+        color: context.read<ThemeCubit>().state == 0
+            ? AppColors.white
+            : AppColors.primary,
+        border: Border.all(
+          color: context.read<ThemeCubit>().state == 0
+              ? AppColors.primary
+              : AppColors.white,
+        ),
         borderRadius: BorderRadius.circular(10.r),
       ),
       child: Column(
@@ -62,11 +69,13 @@ class RandomDoaaContainer extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              const Text(
+              Text(
                 ' دعاء اليوم',
                 style: TextStyle(
                   fontSize: 16,
-                  color: AppColors.black,
+                  color: context.read<ThemeCubit>().state == 0
+                      ? AppColors.primary
+                      : AppColors.white,
                   letterSpacing: 1.5,
                 ),
               ),
@@ -89,9 +98,11 @@ class RandomDoaaContainer extends StatelessWidget {
                 return Text(
                   context.read<HomeCubitCubit>().somedoaa!.text,
                   textDirection: TextDirection.rtl,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 16,
-                    color: AppColors.black,
+                    color: context.read<ThemeCubit>().state == 0
+                        ? AppColors.black
+                        : AppColors.white,
                     letterSpacing: 1.5,
                   ),
                 );

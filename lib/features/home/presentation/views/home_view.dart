@@ -1,4 +1,3 @@
-import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/cubit/nav_b_ar_cubit.dart';
 import 'package:ana_muslim/features/home/presentation/controllers/cubit/home_cubit_cubit.dart';
 import 'package:ana_muslim/features/home/presentation/views/home_page_view.dart';
@@ -27,7 +26,6 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
       bottomNavigationBar: const CustomNavBAr(),
       body: BlocBuilder<NavBArCubit, int>(
         builder: (context, state) => _views[state],

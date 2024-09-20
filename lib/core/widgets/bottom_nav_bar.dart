@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/app_colors.dart';
+import '../utils/functions.dart';
 
 class CustomNavBAr extends StatelessWidget {
   const CustomNavBAr({
@@ -16,10 +17,9 @@ class CustomNavBAr extends StatelessWidget {
     return BlocBuilder<NavBArCubit, int>(
       builder: (context, state) {
         return BottomNavigationBar(
-          backgroundColor: AppColors.white,
+          backgroundColor: getthemecolor(context),
           type: BottomNavigationBarType.shifting,
           elevation: 16,
-          useLegacyColorScheme: true,
           currentIndex: context.read<NavBArCubit>().state,
           onTap: (value) => context.read<NavBArCubit>().changeIndex(value),
           items: [

@@ -4,6 +4,8 @@ import 'package:ana_muslim/core/widgets/spacers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/utils/functions.dart';
+
 class PrayerTimesContainer extends StatelessWidget {
   const PrayerTimesContainer({
     super.key,
@@ -18,6 +20,9 @@ class PrayerTimesContainer extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 10.h),
       decoration: BoxDecoration(
         color: AppColors.primary.withOpacity(0.9),
+        border: Border.all(
+          color: getthemecolor(context),
+        ),
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Row(

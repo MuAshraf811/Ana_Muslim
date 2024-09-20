@@ -1,3 +1,9 @@
+import 'package:ana_muslim/core/constants/app_colors.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../features/qiblah/presentation/cubit/cubit/theme_cubit.dart';
+
 int goToSpacificSurahDependOnItsOrder(int index) {
   return switch (index) {
     0 => 0,
@@ -124,6 +130,12 @@ String getCurrentDate() {
   final String month = date.month.toString().padLeft(2, '0');
   final String year = date.year.toString();
   return "$day-$month-$year";
+}
+
+Color getthemecolor(BuildContext context) {
+  return context.read<ThemeCubit>().state == 0
+      ? AppColors.primary
+      : AppColors.white;
 }
 
 String getWeekDayByItsOrder(int weekDay) {

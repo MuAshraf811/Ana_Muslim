@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/constants/sections_constanst.dart';
+import 'package:ana_muslim/core/utils/functions.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
 import 'package:ana_muslim/core/widgets/svg_handler.dart';
 import 'package:ana_muslim/features/home/presentation/widgets/random_allah_name_container.dart';
@@ -20,7 +21,6 @@ class HomePageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
       body: CustomScrollView(
         slivers: [
           CustomAppBar(),
@@ -83,6 +83,14 @@ class CustomAppBar extends StatelessWidget {
         statusBarColor: AppColors.primary,
         statusBarIconBrightness: Brightness.light,
       ),
+      shape: Border(
+        bottom: BorderSide(
+          color: getthemecolor(context),
+        ),
+      ),
+      elevation: 10,
+      shadowColor: AppColors.white,
+      surfaceTintColor: AppColors.white,
       backgroundColor: AppColors.primary,
       floating: true,
       collapsedHeight: 50.h,
@@ -292,7 +300,7 @@ class CustomGridTile extends StatelessWidget {
       margin: EdgeInsets.only(left: 10.w, bottom: 8.w),
       padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 6.h),
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.secondry),
+        border: Border.all(color: getthemecolor(context)),
         borderRadius: BorderRadius.circular(10.r),
       ),
       child: InkWell(
@@ -303,15 +311,15 @@ class CustomGridTile extends StatelessWidget {
               imagePath,
               width: 44.w,
               height: 38.h,
-              color: AppColors.secondry,
+              color: getthemecolor(context),
             ),
             const VerticalSpacer(height: 3),
             Text(
               text,
               textAlign: TextAlign.center,
               textDirection: TextDirection.rtl,
-              style: const TextStyle(
-                color: AppColors.primary,
+              style: TextStyle(
+                color: getthemecolor(context),
                 fontSize: 15,
               ),
             )

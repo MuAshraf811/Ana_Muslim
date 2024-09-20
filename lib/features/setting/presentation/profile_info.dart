@@ -200,7 +200,7 @@ class _ProfileInfoViewState extends State<ProfileInfoView> {
                       borderRaduis: 8,
                       height: 36,
                       text: 'تخطي',
-                      buttonColor: AppColors.secondry.withOpacity(0.5),
+                      buttonColor: AppColors.secondry.withOpacity(0.9),
                       textColor: AppColors.white,
                     ),
                     SizedBox(

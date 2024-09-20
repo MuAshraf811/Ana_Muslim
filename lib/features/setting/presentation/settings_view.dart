@@ -1,9 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
 import 'package:ana_muslim/core/widgets/svg_handler.dart';
+import 'package:ana_muslim/features/qiblah/presentation/cubit/cubit/theme_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SettingsView extends StatelessWidget {
@@ -13,19 +14,20 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 18.w),
-          child: ListView(
-            children: [
-              const VerticalSpacer(height: 22),
-              ProfileInfoContainer(),
-              const VerticalSpacer(height: 12),
-              SystemSettingContainer(),
-              const VerticalSpacer(height: 12),
-              const FontSizeSlider(),
-              const AboutApplicationContainer(),
-              const VerticalSpacer(height: 16),
-            ],
-          )),
+        padding: EdgeInsets.symmetric(horizontal: 18.w),
+        child: ListView(
+          children: [
+            const VerticalSpacer(height: 22),
+            ProfileInfoContainer(),
+            const VerticalSpacer(height: 12),
+            SystemSettingContainer(),
+            const VerticalSpacer(height: 12),
+            const FontSizeSlider(),
+            const AboutApplicationContainer(),
+            const VerticalSpacer(height: 16),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -45,9 +47,15 @@ class SystemSettingContainer extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const SwitchWithText(text: "الوضع الليلي"),
+          const SwitchWithText(
+            text: "الوضع الليلي",
+            isDarkTheme: true,
+          ),
           const VerticalSpacer(height: 16),
-          const SwitchWithText(text: "تفعيل الإشعارات"),
+          const SwitchWithText(
+            text: "تفعيل الإشعارات",
+            isDarkTheme: false,
+          ),
           const VerticalSpacer(height: 16),
           const LanguageDropDown(),
         ],
@@ -309,9 +317,10 @@ class SwitchWithText extends StatefulWidget {
   const SwitchWithText({
     super.key,
     required this.text,
+    required this.isDarkTheme,
   });
   final String text;
-
+  final bool isDarkTheme;
   @override
   State<SwitchWithText> createState() => _SwitchWithTextState();
 }
@@ -329,6 +338,9 @@ class _SwitchWithTextState extends State<SwitchWithText> {
           Switch.adaptive(
             value: val,
             onChanged: (value) {
+              if (widget.isDarkTheme) {
+                context.read<ThemeCubit>().emitIneger(value ? 1 : 0);
+              } else {}
               setState(() {
                 val = value;
               });

@@ -1,4 +1,5 @@
 import 'package:ana_muslim/core/widgets/snack_bar.dart';
+import 'package:ana_muslim/features/qiblah/presentation/cubit/cubit/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,8 +21,14 @@ class RandomZekrContainer extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 6.w),
       padding: EdgeInsets.symmetric(horizontal: 26.w, vertical: 14.h),
       decoration: BoxDecoration(
-        color: AppColors.white,
-        border: Border.all(color: AppColors.primary),
+        color: context.read<ThemeCubit>().state == 0
+            ? AppColors.white
+            : AppColors.primary,
+        border: Border.all(
+          color: context.read<ThemeCubit>().state == 0
+              ? AppColors.primary
+              : AppColors.white,
+        ),
         borderRadius: BorderRadius.circular(10.r),
       ),
       child: Column(
@@ -62,11 +69,13 @@ class RandomZekrContainer extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              const Text(
+              Text(
                 ' من الأذكار المنسية',
                 style: TextStyle(
                   fontSize: 16,
-                  color: AppColors.black,
+                  color: context.read<ThemeCubit>().state == 0
+                      ? AppColors.primary
+                      : AppColors.white,
                   letterSpacing: 1.5,
                 ),
               ),
@@ -74,7 +83,9 @@ class RandomZekrContainer extends StatelessWidget {
           ),
           const VerticalSpacer(height: 12),
           Divider(
-            color: AppColors.primary,
+            color: context.read<ThemeCubit>().state == 0
+                ? AppColors.primary
+                : AppColors.white,
             endIndent: 16.w,
             indent: 16.w,
           ),
@@ -94,9 +105,11 @@ class RandomZekrContainer extends StatelessWidget {
                       Text(
                         context.read<HomeCubitCubit>().someZekrCategoryName!,
                         textDirection: TextDirection.rtl,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 16,
-                          color: AppColors.secondry,
+                          color: context.read<ThemeCubit>().state == 0
+                              ? AppColors.primary
+                              : AppColors.white,
                           letterSpacing: 1.5,
                         ),
                       ),
@@ -105,9 +118,11 @@ class RandomZekrContainer extends StatelessWidget {
                         context.read<HomeCubitCubit>().randomZekeText,
                         textDirection: TextDirection.rtl,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 16,
-                          color: AppColors.black,
+                          color: context.read<ThemeCubit>().state == 0
+                              ? AppColors.black
+                              : AppColors.white,
                           letterSpacing: 1.5,
                         ),
                       ),

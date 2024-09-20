@@ -6,6 +6,7 @@ import 'package:shimmer/shimmer.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/spacers.dart';
 import '../../../../core/widgets/svg_handler.dart';
+import '../../../qiblah/presentation/cubit/cubit/theme_cubit.dart';
 import '../controllers/cubit/home_cubit_cubit.dart';
 
 class RandomAllahNameContainer extends StatelessWidget {
@@ -20,8 +21,14 @@ class RandomAllahNameContainer extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 6.w),
       padding: EdgeInsets.symmetric(horizontal: 26.w, vertical: 14.h),
       decoration: BoxDecoration(
-        color: AppColors.white,
-        border: Border.all(color: AppColors.primary),
+        color: context.read<ThemeCubit>().state == 0
+            ? AppColors.white
+            : AppColors.primary,
+        border: Border.all(
+          color: context.read<ThemeCubit>().state == 0
+              ? AppColors.primary
+              : AppColors.white,
+        ),
         borderRadius: BorderRadius.circular(10.r),
       ),
       child: Column(
@@ -62,13 +69,15 @@ class RandomAllahNameContainer extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              const Row(
+              Row(
                 children: [
                   Text(
                     ' من أسماء الله',
                     style: TextStyle(
                       fontSize: 16,
-                      color: AppColors.greyText,
+                      color: context.read<ThemeCubit>().state == 0
+                          ? AppColors.primary
+                          : AppColors.white,
                       letterSpacing: 1.5,
                     ),
                   ),
@@ -95,9 +104,11 @@ class RandomAllahNameContainer extends StatelessWidget {
                     Text(
                       context.read<HomeCubitCubit>().someName!.ttl,
                       textDirection: TextDirection.rtl,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 16,
-                        color: AppColors.primary,
+                        color: context.read<ThemeCubit>().state == 0
+                            ? AppColors.primary
+                            : AppColors.white,
                         letterSpacing: 1.5,
                       ),
                     ),
@@ -106,9 +117,11 @@ class RandomAllahNameContainer extends StatelessWidget {
                       context.read<HomeCubitCubit>().someName!.dsc,
                       textDirection: TextDirection.rtl,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 16,
-                        color: AppColors.black,
+                        color: context.read<ThemeCubit>().state == 0
+                            ? AppColors.black
+                            : AppColors.white,
                         letterSpacing: 1.5,
                       ),
                     ),
