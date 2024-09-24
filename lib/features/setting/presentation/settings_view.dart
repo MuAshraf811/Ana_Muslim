@@ -16,21 +16,17 @@ class SettingsView extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 18.w),
-        child: BlocBuilder<FontCubit, int>(
-          builder: (context, state) {
-            return ListView(
-              children: [
-                const VerticalSpacer(height: 22),
-                ProfileInfoContainer(),
-                const VerticalSpacer(height: 12),
-                SystemSettingContainer(),
-                const VerticalSpacer(height: 12),
-                const FontSizeSlider(),
-                const AboutApplicationContainer(),
-                const VerticalSpacer(height: 16),
-              ],
-            );
-          },
+        child: ListView(
+          children: [
+            const VerticalSpacer(height: 22),
+            ProfileInfoContainer(),
+            const VerticalSpacer(height: 12),
+            SystemSettingContainer(),
+            const VerticalSpacer(height: 12),
+            const FontSizeSlider(),
+            const AboutApplicationContainer(),
+            const VerticalSpacer(height: 16),
+          ],
         ),
       ),
     );

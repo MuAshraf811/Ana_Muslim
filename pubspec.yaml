@@ -39,6 +39,9 @@ dependencies:
   flutter_svg: ^2.0.10+1
   location: ^6.0.2
   meta: ^1.12.0
+  path_provider: ^2.1.4
+  pdfx: ^2.7.0
+  performance: ^0.1.1
   provider: ^6.1.2
   qibla_direction: ^1.0.1
   share_plus: ^10.0.0
@@ -63,6 +66,8 @@ flutter:
     - assets/svgs/
     - assets/jsons/
     - assets/images/Quran/
+    - assets/quran.pdf 
+    - assets/images/quran2/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

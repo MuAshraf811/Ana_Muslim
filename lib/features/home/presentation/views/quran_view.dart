@@ -1,5 +1,6 @@
 import 'package:ana_muslim/core/constants/app_colors.dart';
 import 'package:ana_muslim/core/widgets/spacers.dart';
+import 'package:ana_muslim/features/home/presentation/views/dummy_quran.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -53,7 +54,7 @@ class _QuranViewState extends State<QuranView> {
                 controller: controller,
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) =>
-                    QuranOnePageItem(pageIndex: index),
+                    QuranOnePageItem2(pageIndex: index),
               ),
             ),
           ],

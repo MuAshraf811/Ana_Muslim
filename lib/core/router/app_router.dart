@@ -12,7 +12,6 @@ import 'package:ana_muslim/features/home/presentation/views/radio_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/salleh_zekr_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/sebha_view.dart';
 import 'package:ana_muslim/features/home/presentation/views/surahs_view.dart';
-import 'package:ana_muslim/features/qiblah/presentation/cubit/cubit/font_cubit.dart';
 import 'package:ana_muslim/features/setting/presentation/profile_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,11 +23,7 @@ class AppRouter {
     switch (settings.name) {
       case RoutesConstants.homePage:
         return MaterialPageRoute(
-          builder: (context) => BlocBuilder<FontCubit, int>(
-            builder: (context, state) {
-              return const HomeView();
-            },
-          ),
+          builder: (context) => const HomeView(),
         );
       case RoutesConstants.surahsView:
         return MaterialPageRoute(
